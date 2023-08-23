@@ -9,9 +9,22 @@ public class PlayerControler : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
 
-    [Header("Speed")]
+    [Header("General Stuff")]
+    [SerializeField] int Health = 100;
+    [SerializeField] float Stamina = 100f;
+
+    [Header("WASD Movment")]
     [SerializeField] float speed = 2f;
     [SerializeField] float maxSpeed = 10f;
+
+    [Header("Dash")]
+    [SerializeField] string DashKey = "space";
+    [SerializeField] float DashDistance = 5f;
+
+    [Header("Running")]
+    [SerializeField] string SprintKey = "leftShift";
+    [SerializeField] int SprintStam = 10;
+    [SerializeField] bool Sprinting = false;
 
     Vector2 motionVector;
 
@@ -30,10 +43,19 @@ public class PlayerControler : MonoBehaviour
             vertical,
             0
         );
+
+        if (Input.GetKeyDown(DashKey))
+            Dash();
     }
 
     void FixedUpdate()
     {
+       if (Sprinting == false)
+        {
+            if (Stamina + 0.5f <= 100f)
+                Stamina += 0.5f;
+        }
+
         Move();
     }
 
@@ -46,7 +68,14 @@ public class PlayerControler : MonoBehaviour
         Vector2 direction = mousePosition - transform.position;
         float angle = Vector2.SignedAngle(Vector2.right, direction);
         transform.eulerAngles = new Vector3(0, 0, angle);
+    }
 
-        print(rigidbody2d.velocity.magnitude);
+    private void Dash()
+    {
+        if (Stamina < 25f)
+            return;
+
+        Stamina -= 25f;
+        print(Stamina);
     }
 }
