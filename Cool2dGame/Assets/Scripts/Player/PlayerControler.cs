@@ -14,16 +14,19 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] float Stamina = 100f;
 
     [Header("WASD Movment")]
-    [SerializeField] float speed = 2f;
+    [SerializeField] float speed = 5f;
     [SerializeField] float maxSpeed = 10f;
 
     [Header("Dash")]
     [SerializeField] string DashKey = "space";
-    [SerializeField] float DashDistance = 5f;
+    [SerializeField] float DashTime = 5f;
+    [SerializeField] float DashSpeed = 15f;
+    [SerializeField] bool canDash = true;
 
     [Header("Running")]
-    [SerializeField] string SprintKey = "leftShift";
+    [SerializeField] string SprintKey = "left shift";
     [SerializeField] int SprintStam = 10;
+    [SerializeField] float SprintSpeed = 10f;
     [SerializeField] bool Sprinting = false;
 
     Vector2 motionVector;
@@ -46,14 +49,17 @@ public class PlayerControler : MonoBehaviour
 
         if (Input.GetKeyDown(DashKey))
             Dash();
+
+        if (Input.GetKeyDown(SprintKey))
+            Sprinting = !Sprinting;
     }
 
     void FixedUpdate()
     {
-       if (Sprinting == false)
+       if (Sprinting == false && canDash == true)
         {
-            if (Stamina + 0.5f <= 100f)
-                Stamina += 0.5f;
+            if (Stamina + 0.05f <= 100f)
+                Stamina += 0.05f;
         }
 
         Move();
@@ -61,7 +67,23 @@ public class PlayerControler : MonoBehaviour
 
     private void Move()
     {
-        rigidbody2d.velocity   = motionVector * speed;
+        if (Sprinting == false)
+            rigidbody2d.velocity = motionVector * speed;
+        else if (Sprinting == true)
+        {
+            if (Stamina - 0.05f <= 0)
+            {
+                Sprinting = false;
+                rigidbody2d.velocity = motionVector * speed;
+            }
+            else
+            {
+                rigidbody2d.velocity = motionVector * SprintSpeed;
+                Stamina -= 0.05f;
+            }
+        }
+
+        print(rigidbody2d.velocity);
         rigidbody2d.velocity =  Vector3.ClampMagnitude(rigidbody2d.velocity, maxSpeed);
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -70,12 +92,16 @@ public class PlayerControler : MonoBehaviour
         transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
-    private void Dash()
+    void Dash()
     {
-        if (Stamina < 25f)
+        if (Stamina < 25f || canDash == false)
             return;
 
         Stamina -= 25f;
-        print(Stamina);
+        canDash = false;
+
+        // Dash Code Here
+
+        canDash = true;
     }
 }
