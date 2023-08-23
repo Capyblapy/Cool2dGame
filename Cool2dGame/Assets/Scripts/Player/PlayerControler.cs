@@ -14,26 +14,25 @@ public class PlayerControler : MonoBehaviour
 
     [Header("General Stuff")]
     [SerializeField] float Stamina = 100f;
+    [SerializeField] float RegenStam = 0.05f;
 
     [Header("WASD Movment")]
     [SerializeField] float speed = 5f;
-    [SerializeField] float maxSpeed = 10f;
-    [SerializeField] float dragAmount = 10f;
+    [SerializeField] float maxSpeed = 5f;
+    [SerializeField] float dragAmount = 100f;
 
     [Header("Dash")]
     [SerializeField] string DashKey = "space";
-    [SerializeField] float DashTime = 1f;
+    [SerializeField] float DashTime = 0.3f;
     float DashTimer;
     [SerializeField] float DashSpeed = 15f;
-    [SerializeField] float dashMaxSpeed = 75;
-    [SerializeField] bool canDash = true;
+    [SerializeField] float dashMaxSpeed = 20f;
 
     [Header("Running")]
     [SerializeField] string SprintKey = "left shift";
-    [SerializeField] int SprintStam = 10;
+    [SerializeField] float SprintStam = 0.05f;
     [SerializeField] float SprintSpeed = 10f;
-    [SerializeField] float sprintMaxSpeed = 50;
-    [SerializeField] bool Sprinting = false;
+    [SerializeField] float sprintMaxSpeed = 10f;
 
     Vector2 motionVector;
 
@@ -50,12 +49,6 @@ public class PlayerControler : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Sprinting == false && canDash == true)
-        {
-            if (Stamina + 0.05f <= 100f)
-                Stamina += 0.05f;
-        }
-
         Move();
     }
 
@@ -73,8 +66,10 @@ public class PlayerControler : MonoBehaviour
         if (Input.GetKeyDown(DashKey))
             Dash();
 
-        if (Input.GetKeyDown(SprintKey))
-            Sprinting = !Sprinting;
+        if (Input.GetKey(SprintKey))
+            Sprint(true);
+        else
+            Sprint(false);
     }
 
     void Timers()
@@ -92,7 +87,7 @@ public class PlayerControler : MonoBehaviour
                 if (DashTimer > 0)
                     DashTimer -= Time.deltaTime;
                 else
-                    playerState = playerStates.idle;
+                    playerState = playerStates.walking;
 
                 break;
             default:
@@ -102,39 +97,51 @@ public class PlayerControler : MonoBehaviour
 
     private void Move()
     {
-        if (Sprinting == false || Stamina - 0.05f <= 0)
-        {
-            Sprinting = false;
-            rigidbody2d.velocity += motionVector * speed;
-        }
-        else if (Sprinting == true)
-        {
-            rigidbody2d.velocity += motionVector * SprintSpeed;
-            Stamina -= 0.05f;
-        }
+        if (playerState == playerStates.spriting && (Stamina - 0.05f <= 0) == false)
+           playerState = playerStates.walking;
 
-        print(rigidbody2d.velocity);
         switch (playerState)
         {
             case playerStates.idle:
+                rigidbody2d.velocity += motionVector * speed;
                 rigidbody2d.velocity = Vector3.ClampMagnitude(rigidbody2d.velocity, maxSpeed);
                 break;
             case playerStates.walking:
+                rigidbody2d.velocity += motionVector * speed;
                 rigidbody2d.velocity = Vector3.ClampMagnitude(rigidbody2d.velocity, maxSpeed);
                 break;
             case playerStates.spriting:
+                rigidbody2d.velocity += motionVector * SprintSpeed;
                 rigidbody2d.velocity = Vector3.ClampMagnitude(rigidbody2d.velocity, sprintMaxSpeed);
                 break;
             case playerStates.dashing:
+                rigidbody2d.velocity += motionVector * DashSpeed;
                 rigidbody2d.velocity = Vector3.ClampMagnitude(rigidbody2d.velocity, dashMaxSpeed);
                 break;
             default:
                 break;
         }
-        //rigidbody2d.velocity =  Vector3.ClampMagnitude(rigidbody2d.velocity, maxSpeed);
 
+        switch (playerState)
+        {
+            case playerStates.idle:
+                if (Stamina + RegenStam <= 100f)
+                    Stamina += RegenStam;
+                break;
+            case playerStates.walking:
+                if (Stamina + RegenStam <= 100f)
+                    Stamina += RegenStam;
+                break;
+            case playerStates.spriting:
+                Stamina -= SprintStam;
+                break;
+            case playerStates.dashing:
+                break;
+            default:
+                break;
+        }
 
-        if(motionVector == new Vector2(0.00f,0.00f))
+        if (motionVector == new Vector2(0.00f,0.00f))
             rigidbody2d.velocity = Vector3.MoveTowards(rigidbody2d.velocity, Vector3.zero, dragAmount * Time.deltaTime);
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -145,17 +152,55 @@ public class PlayerControler : MonoBehaviour
 
     void Dash()
     {
-        if (Stamina < 25f || canDash == false)
+        if (Stamina < 25f || playerState == playerStates.dashing)
             return;
 
         Stamina -= 25f;
-        canDash = false;
 
         playerState = playerStates.dashing;
         DashTimer = DashTime;
+    }
 
-        // Dash Code Here
-
-        canDash = true;
+    void Sprint(bool value)
+    {
+        switch (value)
+        {
+            case true:
+                switch (playerState)
+                {
+                    case playerStates.idle:
+                        playerState = playerStates.spriting;
+                        break;
+                    case playerStates.walking:
+                        playerState = playerStates.spriting;
+                        break;
+                    case playerStates.spriting:
+                        playerState = playerStates.spriting;
+                        break;
+                    case playerStates.dashing:
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case false:
+                switch (playerState)
+                {
+                    case playerStates.idle:
+                        playerState = playerStates.idle;
+                        break;
+                    case playerStates.walking:
+                        playerState = playerStates.walking;
+                        break;
+                    case playerStates.spriting:
+                        playerState = playerStates.walking;
+                        break;
+                    case playerStates.dashing:
+                        break;
+                    default:
+                        break;
+                }
+                break;
+        }
     }
 }

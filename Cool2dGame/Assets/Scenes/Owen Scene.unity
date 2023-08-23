@@ -579,19 +579,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerState: 0
   Stamina: 100
+  RegenStam: 0.05
   speed: 5
   maxSpeed: 5
-  dragAmount: 10
+  dragAmount: 100
   DashKey: space
-  DashTime: 0.5
+  DashTime: 0.3
   DashSpeed: 15
-  dashMaxSpeed: 75
-  canDash: 1
+  dashMaxSpeed: 20
   SprintKey: left shift
-  SprintStam: 10
+  SprintStam: 0.05
   SprintSpeed: 10
-  sprintMaxSpeed: 50
-  Sprinting: 0
+  sprintMaxSpeed: 10
 --- !u!50 &1921840432
 Rigidbody2D:
   serializedVersion: 4
