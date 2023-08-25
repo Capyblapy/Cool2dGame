@@ -23,10 +23,10 @@ public class PlayerControler : MonoBehaviour
 
     [Header("Dash")]
     [SerializeField] string DashKey = "space";
-    [SerializeField] float DashTime = 0.3f;
+    [SerializeField] float DashTime = 0.2f;
     float DashTimer;
-    [SerializeField] float DashSpeed = 15f;
-    [SerializeField] float dashMaxSpeed = 20f;
+    [SerializeField] float DashSpeed = 30f;
+    [SerializeField] float dashMaxSpeed = 30f;
 
     [Header("Running")]
     [SerializeField] string SprintKey = "left shift";
@@ -115,7 +115,7 @@ public class PlayerControler : MonoBehaviour
                 rigidbody2d.velocity = Vector3.ClampMagnitude(rigidbody2d.velocity, sprintMaxSpeed);
                 break;
             case playerStates.dashing:
-                rigidbody2d.velocity += motionVector * DashSpeed;
+                //rigidbody2d.velocity += motionVector * DashSpeed;
                 rigidbody2d.velocity = Vector3.ClampMagnitude(rigidbody2d.velocity, dashMaxSpeed);
                 break;
             default:
@@ -156,6 +156,13 @@ public class PlayerControler : MonoBehaviour
             return;
 
         Stamina -= 25f;
+
+        Vector3 playerScreenPosition = Camera.main.WorldToScreenPoint(transform.position);
+        Vector3 mouseScreenPosition = Input.mousePosition;
+
+        Vector3 playerToMouseVector = (mouseScreenPosition - playerScreenPosition).normalized;
+
+        rigidbody2d.velocity = playerToMouseVector * DashSpeed;
 
         playerState = playerStates.dashing;
         DashTimer = DashTime;

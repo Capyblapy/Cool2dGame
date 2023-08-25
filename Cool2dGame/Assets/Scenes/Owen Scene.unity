@@ -558,6 +558,7 @@ GameObject:
   - component: {fileID: 1921840432}
   - component: {fileID: 1921840431}
   - component: {fileID: 1921840435}
+  - component: {fileID: 1921840436}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -584,9 +585,9 @@ MonoBehaviour:
   maxSpeed: 5
   dragAmount: 100
   DashKey: space
-  DashTime: 0.3
-  DashSpeed: 15
-  dashMaxSpeed: 20
+  DashTime: 0.2
+  DashSpeed: 30
+  dashMaxSpeed: 30
   SprintKey: left shift
   SprintStam: 0.05
   SprintSpeed: 10
@@ -706,6 +707,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1921840436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921840430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e653d82ec3aa5448b05e0acab31a74d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ControlType: 0
+  Weapon: {fileID: 11400000, guid: d6bd86db9abf92049a633079b8dfea50, type: 2}
+  weaponState: 0
 --- !u!1 &2018257475
 GameObject:
   m_ObjectHideFlags: 0
