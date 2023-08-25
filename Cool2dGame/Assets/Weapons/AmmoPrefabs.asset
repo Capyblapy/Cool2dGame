@@ -9,15 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 260862442a6d09c488dabc10c1a94f52, type: 3}
-  m_Name: gg
+  m_Script: {fileID: 11500000, guid: 2cd7caa01e6336e489778220c3f669cb, type: 3}
+  m_Name: AmmoPrefabs
   m_EditorClassIdentifier: 
-  Name: gg
-  FireType: 1
-  AmmoType: 0
-  Ammo: 15
-  ReloadTime: 0.2
-  Spread: 3
-  Damage: 5
-  BulletAmmount: 1
-  fireTime: 0.2
+  ammoPrefabs:
+  - {fileID: 7495020810151874222, guid: d5ba31eb5f4a38241a36b62b7cf02b0c, type: 3}

@@ -12,6 +12,7 @@ public class WeaponManager : MonoBehaviour
     public weaponStates weaponState;
     [Space]
     float fireTimer;
+    public AmmoPrefabs ammoPrefabs;
 
     void Update()
     {
@@ -74,6 +75,7 @@ public class WeaponManager : MonoBehaviour
                     {
                         weaponState = weaponStates.firing;
                         fireTimer = Weapon.fireTime;
+                        Shoot();
                         print("The left mouse button was pressed");
                     }
                 }
@@ -85,6 +87,7 @@ public class WeaponManager : MonoBehaviour
                     {
                         weaponState = weaponStates.firing;
                         fireTimer = Weapon.fireTime;
+                        Shoot();
                         print("The left mouse button is held down");
                     }
                 }
@@ -94,5 +97,11 @@ public class WeaponManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    void Shoot()
+    {
+        GameObject bob = Instantiate(ammoPrefabs.ammoPrefabs[0]);
+        bob.transform.parent = transform;
     }
 }
