@@ -363,6 +363,8 @@ GameObject:
   m_Component:
   - component: {fileID: 611582815}
   - component: {fileID: 611582814}
+  - component: {fileID: 611582817}
+  - component: {fileID: 611582816}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -438,6 +440,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &611582816
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611582813}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &611582817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611582813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e9bebeb394484ed3a552ab27b580a52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 1921840430}
+  EnemySpeed: 0
+  dirToPlayer: {x: 0, y: 0, z: 0}
 --- !u!1 &886375870
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,8 +763,9 @@ GameObject:
   - component: {fileID: 1921840434}
   - component: {fileID: 1921840433}
   - component: {fileID: 1921840432}
-  - component: {fileID: 1921840431}
   - component: {fileID: 1921840435}
+  - component: {fileID: 1921840437}
+  - component: {fileID: 1921840436}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -734,30 +773,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1921840431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1921840430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb3022493e5679e46970926237e21ccc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 100
-  Stamina: 100
-  speed: 5
-  maxSpeed: 5
-  DashKey: space
-  DashTime: 5
-  DashSpeed: 15
-  canDash: 1
-  SprintKey: left shift
-  SprintStam: 10
-  SprintSpeed: 10
-  Sprinting: 0
 --- !u!50 &1921840432
 Rigidbody2D:
   serializedVersion: 4
@@ -873,6 +888,48 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1921840436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921840430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e653d82ec3aa5448b05e0acab31a74d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ControlType: 0
+  Weapon: {fileID: 11400000, guid: d6bd86db9abf92049a633079b8dfea50, type: 2}
+  weaponState: 0
+  ammoPrefabs: {fileID: 11400000, guid: defd34ad6e63ece44a789a5442ad7c7a, type: 2}
+--- !u!114 &1921840437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921840430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb3022493e5679e46970926237e21ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerState: 0
+  Stamina: 100
+  RegenStam: 0.05
+  speed: 5
+  maxSpeed: 5
+  dragAmount: 100
+  DashKey: space
+  DashTime: 0.2
+  DashSpeed: 30
+  dashMaxSpeed: 30
+  SprintKey: left shift
+  SprintStam: 0.05
+  SprintSpeed: 10
+  sprintMaxSpeed: 10
 --- !u!1 &2018257475
 GameObject:
   m_ObjectHideFlags: 0
