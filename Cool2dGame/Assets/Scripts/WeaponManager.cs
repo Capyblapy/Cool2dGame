@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum weaponStates { idle, firing, reloading };
+public enum ControlTypes { Player, AI }
 public class WeaponManager : MonoBehaviour
 {
-    enum ControlTypes {Player, AI}
     [SerializeField] ControlTypes ControlType;
     [Space]
     public Weapon Weapon;
@@ -101,7 +101,15 @@ public class WeaponManager : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bob = Instantiate(ammoPrefabs.ammoPrefabs[0]);
-        bob.transform.parent = transform;
+        GameObject Bullet = Instantiate(ammoPrefabs.ammoPrefabs[0], transform.position, transform.rotation);
+        BulletScript BI = Bullet.GetComponent<BulletScript>();
+        print(BI);
+        if (BI != null)
+        {
+            BI.ControlType = ControlType;
+            BI.Weapon = Weapon;
+        }
+        else
+            Destroy(Bullet);
     }
 }
