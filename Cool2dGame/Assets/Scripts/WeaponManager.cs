@@ -20,13 +20,20 @@ public class WeaponManager : MonoBehaviour
         {
             case ControlTypes.Player:
                 PlayerInput();
-                PlayerTimers();
                 break;
             case ControlTypes.AI:
+                EnemyAI eAI = GetComponent<EnemyAI>();
+                if (eAI == null)
+                    break;
+
+                if (eAI.Status == AiStatus.Shooting)
+                    Shoot();
                 break;
             default:
                 break;
         }
+
+        Timers();
     }
     void FixedUpdate()
     {
@@ -41,7 +48,7 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    void PlayerTimers()
+    void Timers()
     {
         switch (weaponState)
         {
@@ -113,7 +120,7 @@ public class WeaponManager : MonoBehaviour
 
     void Projectile()
     {
-        GameObject Bullet = Instantiate(ammoPrefabs.ammoPrefabs[0], transform.position + (transform.right * 0.5f), transform.rotation);
+        GameObject Bullet = Instantiate(ammoPrefabs.ammoPrefabs[0], transform.position + (transform.right * 1f), transform.rotation);
         Bullet.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, -90);
         BulletScript BI = Bullet.GetComponent<BulletScript>();
         if (BI != null)

@@ -10,6 +10,7 @@ public enum playerStates {idle, walking, spriting, dashing};
 public class PlayerControler : MonoBehaviour
 {
     public playerStates playerState;
+    public static GameObject Player;
     Rigidbody2D rigidbody2d;
 
     [Header("General Stuff")]
@@ -38,6 +39,7 @@ public class PlayerControler : MonoBehaviour
 
     void Awake()
     {
+        Player = gameObject;
         rigidbody2d = GetComponent<Rigidbody2D>();
     }
 

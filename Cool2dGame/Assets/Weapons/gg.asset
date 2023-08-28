@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: gg
   m_EditorClassIdentifier: 
   Name: gg
+  Icon: {fileID: 0}
   FireType: 1
   AmmoType: 0
   Ammo: 15
