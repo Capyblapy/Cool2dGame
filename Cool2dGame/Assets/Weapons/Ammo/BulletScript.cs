@@ -55,7 +55,7 @@ public class BulletScript : MonoBehaviour
     {
         Destroy(gameObject);
 
-        if(col.gameObject.GetComponent<PlayerControler>())
+        if(col.gameObject.GetComponent<PlayerHealth>())
         {
 
         }
