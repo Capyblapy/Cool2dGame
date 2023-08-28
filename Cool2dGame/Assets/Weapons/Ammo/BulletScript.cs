@@ -22,9 +22,6 @@ public class BulletScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.DrawLine(transform.position, OldPos, Color.red);
-        OldPos = transform.position;
-
         if (TimeAlive - Time.deltaTime <= 0)
             Destroy(gameObject);
         else
@@ -45,9 +42,27 @@ public class BulletScript : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(OldPos, transform.position - OldPos);
+        OldPos = transform.position;
+
+        if (hit.collider != null && hit.collider != GetComponent<BoxCollider2D>())
+            OnTriggerEnter2D(hit.collider);
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         Destroy(gameObject);
+
+        if(col.gameObject.GetComponent<PlayerControler>())
+        {
+
+        }
+        else if(col.gameObject.GetComponent<EnemyAI>())
+        {
+
+        }
     }
 
     private void Move()
