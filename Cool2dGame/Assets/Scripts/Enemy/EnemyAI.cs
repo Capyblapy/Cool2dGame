@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour
 {
     GameObject Player;
     public AiStatus Status;
+    public float Health = 100f;
     [SerializeField] float EnemySpeed;
     Vector3 dirToPlayer;
 
