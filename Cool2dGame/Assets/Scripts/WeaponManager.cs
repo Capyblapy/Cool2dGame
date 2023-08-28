@@ -76,7 +76,6 @@ public class WeaponManager : MonoBehaviour
                         weaponState = weaponStates.firing;
                         fireTimer = Weapon.fireTime;
                         Shoot();
-                        print("The left mouse button was pressed");
                     }
                 }
                 break;
@@ -88,7 +87,6 @@ public class WeaponManager : MonoBehaviour
                         weaponState = weaponStates.firing;
                         fireTimer = Weapon.fireTime;
                         Shoot();
-                        print("The left mouse button is held down");
                     }
                 }
                 break;
@@ -101,9 +99,23 @@ public class WeaponManager : MonoBehaviour
 
     void Shoot()
     {
-        GameObject Bullet = Instantiate(ammoPrefabs.ammoPrefabs[0], transform.position, transform.rotation);
+        switch (Weapon.AmmoType)
+        {
+            case AmmoTypes.Normal:
+                Projectile();
+                break;
+            case AmmoTypes.Freezing:
+                break;
+            default:
+                break;
+        }
+    }
+
+    void Projectile()
+    {
+        GameObject Bullet = Instantiate(ammoPrefabs.ammoPrefabs[0], transform.position + (transform.right * 0.5f), transform.rotation);
+        Bullet.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, -90);
         BulletScript BI = Bullet.GetComponent<BulletScript>();
-        print(BI);
         if (BI != null)
         {
             BI.ControlType = ControlType;
@@ -111,5 +123,10 @@ public class WeaponManager : MonoBehaviour
         }
         else
             Destroy(Bullet);
+    }
+
+    void Raycast()
+    {
+
     }
 }

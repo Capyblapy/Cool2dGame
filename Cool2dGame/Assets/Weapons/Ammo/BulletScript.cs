@@ -10,26 +10,33 @@ public class BulletScript : MonoBehaviour
     public ControlTypes ControlType;
     public Weapon Weapon;
 
+    public float TimeAlive = 100;
+
+    Vector3 OldPos;
+
     void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
+        OldPos = transform.position;
     }
 
     void FixedUpdate()
     {
-        print(Weapon == null);
+        Debug.DrawLine(transform.position, OldPos, Color.red);
+        OldPos = transform.position;
+
+        if (TimeAlive - Time.deltaTime <= 0)
+            Destroy(gameObject);
+        else
+            TimeAlive -= Time.deltaTime;
+
         if (Weapon == null)
             return;
 
         switch (Weapon.AmmoType)
         {
             case AmmoTypes.Normal:
-                Vector3 playerScreenPosition = Camera.main.WorldToScreenPoint(transform.position);
-                Vector3 mouseScreenPosition = Input.mousePosition;
-
-                Vector3 playerToMouseVector = (mouseScreenPosition - playerScreenPosition).normalized;
-
-                rigidbody2d.velocity = playerToMouseVector * 50;
+                Move();
                 break;
             case AmmoTypes.Freezing:
                 break;
@@ -37,4 +44,15 @@ public class BulletScript : MonoBehaviour
                 break;
         }
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        Destroy(gameObject);
+    }
+
+    private void Move()
+    {
+        rigidbody2d.velocity = transform.up * 50;
+    }
 }
+
