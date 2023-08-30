@@ -44,7 +44,7 @@ public class BulletScript : MonoBehaviour
 
     private void LateUpdate()
     {
-        RaycastHit2D hit = Physics2D.Raycast(OldPos, transform.position - OldPos);
+        RaycastHit2D hit = Physics2D.Raycast(OldPos, transform.position - OldPos, 0.8f);
         OldPos = transform.position;
 
         if (hit.collider != null && hit.collider != GetComponent<BoxCollider2D>())
@@ -53,6 +53,7 @@ public class BulletScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        //Debug.DrawLine(OldPos, transform.position, Color.red, Weapon.fireTime - 0.01f);
         Destroy(gameObject);
 
         if(col.gameObject.GetComponent<PlayerHealth>() != null)

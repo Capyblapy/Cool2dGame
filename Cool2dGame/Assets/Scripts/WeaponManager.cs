@@ -28,6 +28,7 @@ public class WeaponManager : MonoBehaviour
 
                 if (eAI.Status == AiStatus.Shooting)
                     Shoot();
+
                 break;
             default:
                 break;
@@ -78,23 +79,13 @@ public class WeaponManager : MonoBehaviour
             case FireTypes.SemiAutomatic:
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if (weaponState == weaponStates.idle)
-                    {
-                        weaponState = weaponStates.firing;
-                        fireTimer = Weapon.fireTime;
-                        Shoot();
-                    }
+                    Shoot();
                 }
                 break;
             case FireTypes.Automatic:
                 if (Input.GetMouseButton(0))
                 {
-                    if (weaponState == weaponStates.idle)
-                    {
-                        weaponState = weaponStates.firing;
-                        fireTimer = Weapon.fireTime;
-                        Shoot();
-                    }
+                    Shoot();
                 }
                 break;
             case FireTypes.BoltAction:
@@ -106,15 +97,20 @@ public class WeaponManager : MonoBehaviour
 
     void Shoot()
     {
-        switch (Weapon.AmmoType)
+        if(weaponState != weaponStates.firing)
         {
-            case AmmoTypes.Normal:
-                Projectile();
-                break;
-            case AmmoTypes.Freezing:
-                break;
-            default:
-                break;
+            weaponState = weaponStates.firing;
+            fireTimer = Weapon.fireTime;
+            switch (Weapon.AmmoType)
+            {
+                case AmmoTypes.Normal:
+                    Projectile();
+                    break;
+                case AmmoTypes.Freezing:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
