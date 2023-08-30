@@ -55,13 +55,15 @@ public class BulletScript : MonoBehaviour
     {
         Destroy(gameObject);
 
-        if(col.gameObject.GetComponent<PlayerHealth>())
+        if(col.gameObject.GetComponent<PlayerHealth>() != null)
         {
-
+            PlayerHealth PH = gameObject.GetComponent<PlayerHealth>();
+            PH.Health -= Weapon.Damage;
         }
-        else if(col.gameObject.GetComponent<EnemyAI>())
+        else if(col.gameObject.GetComponent<EnemyHealth>())
         {
-
+            EnemyHealth EH = gameObject.GetComponent<EnemyHealth>();
+            EH.Health -= Weapon.Damage;
         }
     }
 
