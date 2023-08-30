@@ -21,4 +21,4 @@ MonoBehaviour:
   Spread: 3
   Damage: 5
   BulletAmmount: 1
-  fireTime: 0.5
+  fireTime: 0.2
