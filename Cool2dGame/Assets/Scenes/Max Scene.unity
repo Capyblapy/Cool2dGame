@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 611582814}
   - component: {fileID: 611582817}
   - component: {fileID: 611582816}
+  - component: {fileID: 611582818}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -473,9 +474,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e9bebeb394484ed3a552ab27b580a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1921840430}
-  EnemySpeed: 0
-  dirToPlayer: {x: 0, y: 0, z: 0}
+  Status: 0
+  EnemySpeed: 2
+--- !u!114 &611582818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611582813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e653d82ec3aa5448b05e0acab31a74d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ControlType: 1
+  Weapon: {fileID: 11400000, guid: d6bd86db9abf92049a633079b8dfea50, type: 2}
+  weaponState: 0
+  ammoPrefabs: {fileID: 11400000, guid: defd34ad6e63ece44a789a5442ad7c7a, type: 2}
 --- !u!1 &886375870
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,6 +782,7 @@ GameObject:
   - component: {fileID: 1921840435}
   - component: {fileID: 1921840437}
   - component: {fileID: 1921840436}
+  - component: {fileID: 1921840438}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -930,6 +947,19 @@ MonoBehaviour:
   SprintStam: 0.05
   SprintSpeed: 10
   sprintMaxSpeed: 10
+--- !u!114 &1921840438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921840430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db3900f70278d9e45afa5307c2db37a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
 --- !u!1 &2018257475
 GameObject:
   m_ObjectHideFlags: 0
