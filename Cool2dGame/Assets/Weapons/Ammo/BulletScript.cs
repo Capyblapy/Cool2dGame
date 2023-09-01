@@ -24,7 +24,11 @@ public class BulletScript : MonoBehaviour
 
     private void Start()
     {
-        // Spread Here
+        float randomAngle = Random.Range(-Weapon.Spread / 2, Weapon.Spread / 2);
+        Quaternion spreadRotation = Quaternion.Euler(0, 0, randomAngle);
+
+        // Apply the deviation to the fire direction
+        Vector3 spreadDirection = spreadRotation * transform.up;
     }
 
     void FixedUpdate()
