@@ -116,16 +116,21 @@ public class WeaponManager : MonoBehaviour
 
     void Projectile()
     {
-        GameObject Bullet = Instantiate(ammoPrefabs.ammoPrefabs[0], transform.position + (transform.right * 1f), transform.rotation);
-        Bullet.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, -90);
-        BulletScript BI = Bullet.GetComponent<BulletScript>();
-        if (BI != null)
+        for (int i = 0; i < Weapon.BulletAmmount; i++)
         {
-            BI.ControlType = ControlType;
-            BI.Weapon = Weapon;
+            print(i);
+
+            GameObject Bullet = Instantiate(ammoPrefabs.ammoPrefabs[0], transform.position + (transform.right * 1f), transform.rotation);
+            Bullet.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, -90);
+            BulletScript BI = Bullet.GetComponent<BulletScript>();
+            if (BI != null)
+            {
+                BI.ControlType = ControlType;
+                BI.Weapon = Weapon;
+            }
+            else
+                Destroy(Bullet);
         }
-        else
-            Destroy(Bullet);
     }
 
     void Raycast()

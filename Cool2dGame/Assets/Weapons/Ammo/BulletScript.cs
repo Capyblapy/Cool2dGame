@@ -10,6 +10,8 @@ public class BulletScript : MonoBehaviour
     public ControlTypes ControlType;
     public Weapon Weapon;
 
+    public ParticalPrefabs particalPrefab;
+
     public float TimeAlive = 100;
 
     Vector3 OldPos;
@@ -18,6 +20,11 @@ public class BulletScript : MonoBehaviour
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         OldPos = transform.position;
+    }
+
+    private void Start()
+    {
+        // Spread Here
     }
 
     void FixedUpdate()
@@ -53,24 +60,39 @@ public class BulletScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        //Debug.DrawLine(OldPos, transform.position, Color.red, Weapon.fireTime - 0.01f);
-        Destroy(gameObject);
+        //Debug.DrawLine(OldPos, transform.position, Color.red, Weapon.fireTime - 0.01f)
+        if (CompareTag(col.gameObject.tag) == true)
+            return;
 
         if(col.gameObject.GetComponent<PlayerHealth>() != null)
         {
             PlayerHealth PH = col.gameObject.GetComponent<PlayerHealth>();
             PH.Health -= Weapon.Damage;
+
+            SpawnPartical(0, col.gameObject);
         }
-        else if(col.gameObject.GetComponent<EnemyHealth>() != null)
+
+        print(col.gameObject.GetComponent<EnemyHealth>());
+        if (col.gameObject.GetComponent<EnemyHealth>() != null)
         {
             EnemyHealth EH = col.gameObject.GetComponent<EnemyHealth>();
             EH.Health -= Weapon.Damage;
+
+            SpawnPartical(0, col.gameObject);
         }
+
+        Destroy(gameObject);
     }
 
     private void Move()
     {
         rigidbody2d.velocity = transform.up * 50;
+    }
+
+    private void SpawnPartical(int ParticalNum, GameObject col)
+    {
+        GameObject partical = Instantiate(particalPrefab.particalPrefabs[ParticalNum], col.transform);
+        partical.transform.parent = col.transform;
     }
 }
 

@@ -65,3 +65,4 @@ Builds/Mac_Prototypes/Mac_Prototype/Mac_Prototype.app/Contents/Frameworks/libmon
 Builds/Mac_Prototypes/Mac_Prototype/Mac_Prototype.app/Contents/Frameworks/libmonobdwgc-2.0.dylib
 Builds/Mac_Prototypes/Mac_Prototype/Mac_Prototype.app/Contents/Frameworks/libMonoPosixHelper.dylib
 Builds/Mac_Prototypes/Mac_Prototype/Mac_Prototype.app/Contents/Frameworks/UnityPlayer.dylib
+*.dwlt

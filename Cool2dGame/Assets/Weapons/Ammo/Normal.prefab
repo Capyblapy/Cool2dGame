@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5680447746897641530}
   m_Layer: 0
   m_Name: Normal
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ControlType: 0
   Weapon: {fileID: 0}
+  particalPrefab: {fileID: 11400000, guid: 088eb0bc476acd2429c3c49d45a06b35, type: 2}
   TimeAlive: 20
 --- !u!50 &7045119371470688819
 Rigidbody2D:

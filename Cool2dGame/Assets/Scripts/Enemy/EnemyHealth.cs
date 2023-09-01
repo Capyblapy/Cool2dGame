@@ -6,15 +6,9 @@ public class EnemyHealth : MonoBehaviour
 {
     public float Health = 100f;
 
-    // Start is called before the first frame update
-    void Start()
+    void FixedUpdate()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (Health <= 0)
+            Destroy(gameObject);
     }
 }
