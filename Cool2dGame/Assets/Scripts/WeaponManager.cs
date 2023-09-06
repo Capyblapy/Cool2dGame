@@ -121,7 +121,7 @@ public class WeaponManager : MonoBehaviour
             print(i);
 
             GameObject Bullet = Instantiate(ammoPrefabs.ammoPrefabs[0], transform.position + (transform.right * 1f), transform.rotation);
-            Bullet.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, -90);
+            Bullet.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, -90 + Random.Range(-Weapon.Spread, Weapon.Spread));
             BulletScript BI = Bullet.GetComponent<BulletScript>();
             if (BI != null)
             {
