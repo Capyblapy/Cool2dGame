@@ -67,3 +67,5 @@ Builds/Mac_Prototypes/Mac_Prototype/Mac_Prototype.app/Contents/Frameworks/libMon
 Builds/Mac_Prototypes/Mac_Prototype/Mac_Prototype.app/Contents/Frameworks/UnityPlayer.dylib
 *.dwlt
 Cool2dGame/UserSettings/Layouts/default-2021.dwlt
+*.dwlt
+Cool2dGame/UserSettings/Layouts/default-2021.dwlt
