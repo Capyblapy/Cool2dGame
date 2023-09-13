@@ -16,8 +16,8 @@ MonoBehaviour:
   Icon: {fileID: 0}
   FireType: 1
   AmmoType: 0
-  Ammo: 15
-  ReloadTime: 0.2
+  Ammo: 5
+  ReloadTime: 1
   Spread: 10
   Damage: 3
   BulletAmmount: 10

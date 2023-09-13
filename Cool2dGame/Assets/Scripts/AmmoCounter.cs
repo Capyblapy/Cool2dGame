@@ -17,12 +17,21 @@ public class AmmoCounter : MonoBehaviour
 
         Weapon weapon = wm.Weapon;
 
-        MaxAmmo.text = "/"+weapon.Ammo.ToString();
-        CurrentAmmo.text = wm.currentAmmo.ToString();
-
-        if (wm.currentAmmo <= 5)
-            CurrentAmmo.color = Color.red;
-        else
+        if(wm.weaponState == weaponStates.reloading)
+        {
             CurrentAmmo.color = Color.white;
+            MaxAmmo.text = "";
+            CurrentAmmo.text = "Reloading";
+        }
+        else
+        {
+            MaxAmmo.text = "/" + weapon.Ammo.ToString();
+            CurrentAmmo.text = wm.currentAmmo.ToString();
+
+            if (wm.currentAmmo <= 5)
+                CurrentAmmo.color = Color.red;
+            else
+                CurrentAmmo.color = Color.white;
+        }
     }
 }

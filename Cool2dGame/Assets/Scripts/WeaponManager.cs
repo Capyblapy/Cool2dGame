@@ -12,6 +12,7 @@ public class WeaponManager : MonoBehaviour
     public weaponStates weaponState;
     [Space]
     float fireTimer;
+    float reloadTimer;
     public AmmoPrefabs ammoPrefabs;
     public int currentAmmo;
 
@@ -64,6 +65,11 @@ public class WeaponManager : MonoBehaviour
 
                 break;
             case weaponStates.reloading:
+                if (reloadTimer > 0)
+                    reloadTimer -= Time.deltaTime;
+                else
+                    weaponState = weaponStates.idle;
+
                 break;
             default:
                 break;
@@ -101,7 +107,7 @@ public class WeaponManager : MonoBehaviour
 
     void Shoot()
     {
-        if(weaponState != weaponStates.firing && currentAmmo  > 0)
+        if(weaponState == weaponStates.idle && currentAmmo  > 0)
         {
             weaponState = weaponStates.firing;
             fireTimer = Weapon.fireTime;
@@ -145,6 +151,11 @@ public class WeaponManager : MonoBehaviour
 
     void Reload()
     {
-        currentAmmo = Weapon.Ammo;
+        if (weaponState == weaponStates.idle)
+        {
+            weaponState = weaponStates.reloading;
+            reloadTimer = Weapon.ReloadTime;
+            currentAmmo = Weapon.Ammo;
+        }
     }
 }
