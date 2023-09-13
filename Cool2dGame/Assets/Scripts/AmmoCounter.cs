@@ -5,7 +5,6 @@ using TMPro;
 
 public class AmmoCounter : MonoBehaviour
 {
-    [SerializeField] TMP_Text MaxAmmo;
     [SerializeField] TMP_Text CurrentAmmo;
 
     public WeaponManager wm;
@@ -19,19 +18,17 @@ public class AmmoCounter : MonoBehaviour
 
         if(wm.weaponState == weaponStates.reloading)
         {
-            CurrentAmmo.color = Color.white;
-            MaxAmmo.text = "";
             CurrentAmmo.text = "Reloading";
         }
         else
         {
-            MaxAmmo.text = "/" + weapon.Ammo.ToString();
+            //MaxAmmo.text = "/" + weapon.Ammo.ToString();
             CurrentAmmo.text = wm.currentAmmo.ToString();
 
-            if (wm.currentAmmo <= 5)
-                CurrentAmmo.color = Color.red;
+            if (wm.currentAmmo <= 0)
+                CurrentAmmo.text = "<color=red>"+wm.currentAmmo.ToString()+"</color>"+ "/"+weapon.Ammo.ToString();
             else
-                CurrentAmmo.color = Color.white;
+                CurrentAmmo.text = wm.currentAmmo.ToString() + "/" + weapon.Ammo.ToString();
         }
     }
 }

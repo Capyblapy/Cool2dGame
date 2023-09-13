@@ -16,6 +16,11 @@ public class WeaponManager : MonoBehaviour
     public AmmoPrefabs ammoPrefabs;
     public int currentAmmo;
 
+    private void Start()
+    {
+        currentAmmo = Weapon.Ammo;
+    }
+
     void Update()
     {
         switch (ControlType)
