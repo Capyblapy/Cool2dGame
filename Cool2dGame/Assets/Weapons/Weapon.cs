@@ -16,7 +16,7 @@ public class Weapon : ScriptableObject
     public AmmoTypes AmmoType;
 
     [Header("Ammo Info")]
-    public float Ammo;
+    public int Ammo;
     public float ReloadTime;
 
     [Header("Shoot Info")]

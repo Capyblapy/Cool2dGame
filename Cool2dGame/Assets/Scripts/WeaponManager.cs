@@ -13,6 +13,7 @@ public class WeaponManager : MonoBehaviour
     [Space]
     float fireTimer;
     public AmmoPrefabs ammoPrefabs;
+    public int currentAmmo;
 
     void Update()
     {
@@ -93,14 +94,18 @@ public class WeaponManager : MonoBehaviour
             default:
                 break;
         }
+
+        if(Input.GetKeyDown(KeyCode.R))
+            Reload();
     }
 
     void Shoot()
     {
-        if(weaponState != weaponStates.firing)
+        if(weaponState != weaponStates.firing && currentAmmo  > 0)
         {
             weaponState = weaponStates.firing;
             fireTimer = Weapon.fireTime;
+            currentAmmo -= 1;
             switch (Weapon.AmmoType)
             {
                 case AmmoTypes.Normal:
@@ -136,5 +141,10 @@ public class WeaponManager : MonoBehaviour
     void Raycast()
     {
 
+    }
+
+    void Reload()
+    {
+        currentAmmo = Weapon.Ammo;
     }
 }
