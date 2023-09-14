@@ -9,6 +9,12 @@ public class EnemyHealth : MonoBehaviour
     void FixedUpdate()
     {
         if (Health <= 0)
+        {
+            WeaponManager wm = gameObject.GetComponent<WeaponManager>();
+            if (wm != null)
+                Destroy(wm.BulletParent);
+
             Destroy(gameObject);
+        }
     }
 }

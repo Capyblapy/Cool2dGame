@@ -15,10 +15,13 @@ public class WeaponManager : MonoBehaviour
     float reloadTimer;
     public AmmoPrefabs ammoPrefabs;
     public int currentAmmo;
+    [Space]
+    public GameObject BulletParent;
 
     private void Start()
     {
         currentAmmo = Weapon.Ammo;
+        BulletParent = new GameObject(gameObject.name + "_Bullets");
     }
 
     void Update()
@@ -112,21 +115,26 @@ public class WeaponManager : MonoBehaviour
 
     void Shoot()
     {
-        if(weaponState == weaponStates.idle && currentAmmo  > 0)
+        if(weaponState == weaponStates.idle)
         {
-            weaponState = weaponStates.firing;
-            fireTimer = Weapon.fireTime;
-            currentAmmo -= 1;
-            switch (Weapon.AmmoType)
+            if (currentAmmo > 0)
             {
-                case AmmoTypes.Normal:
-                    Projectile();
-                    break;
-                case AmmoTypes.Freezing:
-                    break;
-                default:
-                    break;
+                weaponState = weaponStates.firing;
+                fireTimer = Weapon.fireTime;
+                currentAmmo -= 1;
+                switch (Weapon.AmmoType)
+                {
+                    case AmmoTypes.Normal:
+                        Projectile();
+                        break;
+                    case AmmoTypes.Freezing:
+                        break;
+                    default:
+                        break;
+                }
             }
+            else
+                Reload();
         }
     }
 
@@ -138,6 +146,7 @@ public class WeaponManager : MonoBehaviour
 
             GameObject Bullet = Instantiate(ammoPrefabs.ammoPrefabs[0], transform.position + (transform.right * 1f), transform.rotation);
             Bullet.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, -90 + Random.Range(-Weapon.Spread, Weapon.Spread));
+            Bullet.transform.parent = BulletParent.transform;
             BulletScript BI = Bullet.GetComponent<BulletScript>();
             if (BI != null)
             {
