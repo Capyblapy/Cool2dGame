@@ -8,7 +8,9 @@ public class RoomGenerator : MonoBehaviour
     public int RoomSizeY;
 
     public GameObject blankTile;
-
+    public GameObject wallTile;
+    public GameObject floorTile;
+    public GameObject enemySpawnTile;
 
     public GameObject[,] roomTiles;
 
@@ -34,17 +36,26 @@ public class RoomGenerator : MonoBehaviour
         {
             for (int y = 0; y < RoomSizeY; y++)
             {
-                SpawnTile(new Vector3(x, y, 0));
+                SpawnTile(new Vector3(x, y, 0), new Vector2(x, y));
             }
         }
 
     }
 
-    void SpawnTile(Vector3 spawnOffset)
+    void SpawnTile(Vector3 spawnOffset, Vector2 index)
     {
-        GameObject spawnedTile = Instantiate(blankTile);
+        if(index.x == 0 || index.y == 0)
+        {
+            GameObject spawnedTile = Instantiate(wallTile);
+            spawnedTile.transform.position = this.transform.position + spawnOffset;
+        }
+        else
+        {
+            GameObject spawnedTile = Instantiate(floorTile);
+            spawnedTile.transform.position = this.transform.position + spawnOffset;
+        }
 
-        spawnedTile.transform.position = this.transform.position + spawnOffset;
+        
     }
 
 

@@ -239,6 +239,9 @@ MonoBehaviour:
   RoomSizeX: 20
   RoomSizeY: 10
   blankTile: {fileID: 6073953382357197993}
+  wallTile: {fileID: 4861371391145181421, guid: 60abdcdfdd5fb42b19bce26e987cce70, type: 3}
+  floorTile: {fileID: 4861371391145181421, guid: c9e5d4b2a4ec74245aa109949ff477fc, type: 3}
+  enemySpawnTile: {fileID: 4861371391145181421, guid: 91c2951e69ad1496392dece1aadfa47b, type: 3}
 --- !u!4 &1104554699
 Transform:
   m_ObjectHideFlags: 0
