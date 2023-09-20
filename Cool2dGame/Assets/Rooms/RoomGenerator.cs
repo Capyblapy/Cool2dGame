@@ -44,7 +44,7 @@ public class RoomGenerator : MonoBehaviour
 
     void SpawnTile(Vector3 spawnOffset, Vector2 index)
     {
-        if(index.x == 0 || index.y == 0)
+        if(index.x == 0 || index.x == RoomSizeX-1 || index.y == 0 || index.y == RoomSizeY-1)
         {
             GameObject spawnedTile = Instantiate(wallTile);
             spawnedTile.transform.position = this.transform.position + spawnOffset;
