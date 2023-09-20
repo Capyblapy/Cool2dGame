@@ -759,6 +759,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1273014742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1273014743}
+  m_Layer: 0
+  m_Name: Bullets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1273014743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273014742}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.12888736, y: 0.11226405, z: 1.2320067}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1297834143
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,6 +841,7 @@ MonoBehaviour:
   weaponState: 0
   ammoPrefabs: {fileID: 0}
   currentAmmo: 0
+  BulletParent: {fileID: 0}
 --- !u!1 &1315705178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,6 +1209,7 @@ MonoBehaviour:
   weaponState: 0
   ammoPrefabs: {fileID: 11400000, guid: defd34ad6e63ece44a789a5442ad7c7a, type: 2}
   currentAmmo: 0
+  BulletParent: {fileID: 0}
 --- !u!114 &1921840437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1332,6 +1365,7 @@ MonoBehaviour:
   weaponState: 0
   ammoPrefabs: {fileID: 11400000, guid: defd34ad6e63ece44a789a5442ad7c7a, type: 2}
   currentAmmo: 0
+  BulletParent: {fileID: 0}
 --- !u!114 &1945911669
 MonoBehaviour:
   m_ObjectHideFlags: 0
