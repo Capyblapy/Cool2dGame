@@ -142,8 +142,6 @@ public class WeaponManager : MonoBehaviour
     {
         for (int i = 0; i < Weapon.BulletAmmount; i++)
         {
-            print(i);
-
             GameObject Bullet = Instantiate(ammoPrefabs.ammoPrefabs[0], transform.position + (transform.right * 1f), transform.rotation);
             Bullet.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, -90 + Random.Range(-Weapon.Spread, Weapon.Spread));
             Bullet.transform.parent = BulletParent.transform;
