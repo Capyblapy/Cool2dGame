@@ -236,8 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c09761efb0490497c997f923cfb362ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomSizeX: 20
-  RoomSizeY: 10
+  RoomSizeX: 30
+  RoomSizeY: 30
   blankTile: {fileID: 6073953382357197993}
   wallTile: {fileID: 4861371391145181421, guid: 60abdcdfdd5fb42b19bce26e987cce70, type: 3}
   floorTile: {fileID: 4861371391145181421, guid: c9e5d4b2a4ec74245aa109949ff477fc, type: 3}

@@ -18,7 +18,7 @@ public class EnemyAI : MonoBehaviour
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
     }
-
+    
     private void Start()
     {
         Player = PlayerControler.Player;
@@ -29,7 +29,7 @@ public class EnemyAI : MonoBehaviour
     {
         homingFunction();
     }
-
+    // Makes the enemy look for the player, move toward the player, and attack the player
     public void homingFunction()
     {
         if (Vector3.Distance(Player.transform.position, transform.position) <= 5)

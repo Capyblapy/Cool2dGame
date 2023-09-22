@@ -31,7 +31,7 @@ public class RoomGenerator : MonoBehaviour
     void GenerateRoom()
     {
         roomTiles = new GameObject[RoomSizeX, RoomSizeY];
-
+        // Makes a for loop that activates the SpawnTile function inside the given coordinates
         for (int x = 0; x < RoomSizeX; x++)
         {
             for (int y = 0; y < RoomSizeY; y++)
