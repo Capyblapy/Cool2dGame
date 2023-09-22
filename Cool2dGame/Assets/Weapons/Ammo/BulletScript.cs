@@ -68,7 +68,7 @@ public class BulletScript : MonoBehaviour
         if (CompareTag(col.gameObject.tag) == true)
             return;
 
-        if(col.gameObject.GetComponent<PlayerHealth>() != null)
+        if (col.gameObject.GetComponent<PlayerHealth>() != null)
         {
             PlayerHealth PH = col.gameObject.GetComponent<PlayerHealth>();
             PH.Health -= Weapon.Damage;
@@ -76,12 +76,17 @@ public class BulletScript : MonoBehaviour
             SpawnPartical(0, col.gameObject);
         }
 
-        print(col.gameObject.GetComponent<EnemyHealth>());
         if (col.gameObject.GetComponent<EnemyHealth>() != null)
         {
             EnemyHealth EH = col.gameObject.GetComponent<EnemyHealth>();
             EH.Health -= Weapon.Damage;
 
+            SpawnPartical(0, col.gameObject);
+        }
+
+        if (col.gameObject.GetComponent<ChestBehaviour>() != null)
+        {
+            col.gameObject.GetComponent<ChestBehaviour>().DropChest();
             SpawnPartical(0, col.gameObject);
         }
 
