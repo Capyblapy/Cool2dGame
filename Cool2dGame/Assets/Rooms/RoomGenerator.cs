@@ -44,6 +44,7 @@ public class RoomGenerator : MonoBehaviour
 
     void SpawnTile(Vector3 spawnOffset, Vector2 index)
     {
+        // if statement saying if the x or y coordinate is 0 or the max size of the room, spawn a wall, and if it isnt, spawn floor
         if(index.x == 0 || index.x == RoomSizeX-1 || index.y == 0 || index.y == RoomSizeY-1)
         {
             GameObject spawnedTile = Instantiate(wallTile);
