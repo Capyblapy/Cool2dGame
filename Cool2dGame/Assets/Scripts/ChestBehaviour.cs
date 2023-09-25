@@ -5,18 +5,7 @@ using UnityEngine;
 public class ChestBehaviour : MonoBehaviour
 {
     public bool ChestHit = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    public LootList loot;
 
     public void DropChest()
     {
@@ -25,16 +14,32 @@ public class ChestBehaviour : MonoBehaviour
 
         ChestHit = true;
 
-        DropItem(Random.Range(1, 3));
+        DropItems(Random.Range(1, 3));
+    }
+    
+    GameObject GetItem()
+    {
+        GameObject selectedLoot = loot.list[Random.Range(0, loot.list.Length)];
+        if (selectedLoot != null && selectedLoot.GetComponent<WeaponClass>())
+            return selectedLoot;
+
+        return null;
     }
 
-    void DropItem(int ammount)
+    void DropItems(int ammount)
     {
         for (int i = 0; i < ammount; i++)
         {
             print("Loot " + i.ToString());
+            SpawnItem(GetItem());
         }
 
         Destroy(gameObject);
+    }
+
+    void SpawnItem(GameObject Item)
+    {
+        GameObject NewItem = Instantiate(Item);
+        NewItem.transform.position = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f)) * transform.position;
     }
 }

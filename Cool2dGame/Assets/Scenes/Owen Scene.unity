@@ -945,6 +945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChestHit: 0
+  loot: {fileID: 11400000, guid: 075835d848ff9ff4eb9ce2b86e16cc97, type: 2}
 --- !u!61 &1837166249
 BoxCollider2D:
   m_ObjectHideFlags: 0
