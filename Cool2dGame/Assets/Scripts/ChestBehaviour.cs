@@ -37,9 +37,18 @@ public class ChestBehaviour : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void NewPosition(GameObject Item, GameObject NewItem)
+    {
+        NewItem.transform.position = transform.position + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0);
+    }
+
     void SpawnItem(GameObject Item)
     {
         GameObject NewItem = Instantiate(Item);
-        NewItem.transform.position = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f)) * transform.position;
+        NewPosition(Item, NewItem);
+
+        RaycastHit2D hit = Physics2D.Raycast(NewItem.transform.position, transform.position - NewItem.transform.position, 0.8f);
+        if (hit.collider != null && hit.collider != GetComponent<BoxCollider2D>())
+            NewPosition(Item, NewItem);
     }
 }
