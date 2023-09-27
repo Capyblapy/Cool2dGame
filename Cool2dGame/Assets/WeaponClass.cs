@@ -5,4 +5,5 @@ using UnityEngine;
 public class WeaponClass : MonoBehaviour
 {
     public Weapon weapon;
+    public Sprite icon;
 }
