@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
+    [Header("Managment")]
     public List<GameObject> Inventory;
     public int Position;
 
@@ -71,16 +72,32 @@ public class InventoryManager : MonoBehaviour
         {
             upPos = Inventory.Count-1;
         }
-        upIcon.sprite = Inventory[upPos].GetComponent<WeaponClass>().icon;
 
         int downPos = Position + 1;
         if (downPos > Inventory.Count - 1)
         {
             downPos = 0;
         }
-        downIcon.sprite = Inventory[downPos].GetComponent<WeaponClass>().icon;
 
+        upIcon.sprite = Inventory[upPos].GetComponent<WeaponClass>().icon;
+        downIcon.sprite = Inventory[downPos].GetComponent<WeaponClass>().icon;
         equiped.sprite = Inventory[Position].GetComponent<WeaponClass>().icon;
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        print(col.gameObject.name);
+        if (col.gameObject.tag != "Loot")
+            return;
+
+        WeaponClass wc = col.gameObject.GetComponent<WeaponClass>();
+        if (wc == null)
+            return;
+
+        Inventory.Add(col.gameObject);
+
+        col.gameObject.SetActive(false);
+        //Destroy(col.gameObject);
     }
 
     void Update()
