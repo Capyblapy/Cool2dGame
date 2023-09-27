@@ -170,4 +170,10 @@ public class WeaponManager : MonoBehaviour
             currentAmmo = Weapon.Ammo;
         }
     }
+
+    public void EquipWeapon(Weapon newWeapon, int weaponAmmo)
+    {
+        Weapon = newWeapon;
+        currentAmmo = weaponAmmo;
+    }
 }
