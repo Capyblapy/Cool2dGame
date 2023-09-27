@@ -27,7 +27,7 @@ public class RoomGenerator : MonoBehaviour
 
     }
 
-
+    
     void GenerateRoom()
     {
         roomTiles = new GameObject[RoomSizeX, RoomSizeY];
@@ -49,15 +49,28 @@ public class RoomGenerator : MonoBehaviour
         {
             GameObject spawnedTile = Instantiate(wallTile);
             spawnedTile.transform.position = this.transform.position + spawnOffset;
+            roomTiles[(int)index.x, (int)index.y] = spawnedTile;
         }
         else
         {
             GameObject spawnedTile = Instantiate(floorTile);
             spawnedTile.transform.position = this.transform.position + spawnOffset;
+            roomTiles[(int)index.x, (int)index.y] = spawnedTile;
         }
+
 
         
     }
 
+    void MakeIsland()
+    {
+        for(int x = 0; x < RoomSizeX; x++)
+        {
+            for(int y = 0; y < RoomSizeY; y++)
+            {
+
+            }
+        }
+    }
 
 }
