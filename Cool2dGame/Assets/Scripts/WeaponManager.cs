@@ -21,7 +21,9 @@ public class WeaponManager : MonoBehaviour
     private void Start()
     {
         BulletParent = new GameObject(gameObject.name + "_Bullets");
-        currentAmmo = Weapon.Ammo;
+
+        if (Weapon != null)
+            currentAmmo = Weapon.Ammo;
     }
 
     void Update()

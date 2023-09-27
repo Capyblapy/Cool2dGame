@@ -67,6 +67,15 @@ public class InventoryManager : MonoBehaviour
 
     void RefreshInventory()
     {
+        if(Inventory.Count == 0)
+        {
+            upIcon.sprite = null;
+            downIcon.sprite = null;
+            equiped.sprite = null;
+
+            return;
+        }
+
         int upPos = Position - 1;
         if (upPos == -1)
         {
@@ -97,7 +106,8 @@ public class InventoryManager : MonoBehaviour
         Inventory.Add(col.gameObject);
 
         col.gameObject.SetActive(false);
-        //Destroy(col.gameObject);
+
+        SwapItem(true);
     }
 
     void Update()
