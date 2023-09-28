@@ -174,6 +174,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3240766744823517923, guid: 5e1debf688be2c746ab622e22ca972a8, type: 3}
+      propertyPath: currentAmmo
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8463951994087136638, guid: 5e1debf688be2c746ab622e22ca972a8, type: 3}
       propertyPath: m_Name
       value: Shotgun
@@ -1493,8 +1497,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db4a1dbf0b1a2f4ab64bb49b630f4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChestHit: 0
   loot: {fileID: 11400000, guid: 075835d848ff9ff4eb9ce2b86e16cc97, type: 2}
+  maxLoot: 1
 --- !u!61 &1837166249
 BoxCollider2D:
   m_ObjectHideFlags: 0

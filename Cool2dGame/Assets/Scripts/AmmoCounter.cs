@@ -11,8 +11,6 @@ public class AmmoCounter : MonoBehaviour
 
     void FixedUpdate()
     {
-        print(wm);
-        print(wm.Weapon);
         if (wm == null || wm.Weapon == null)
         {
             CurrentAmmo.text = "No weapon!";

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ChestBehaviour : MonoBehaviour
 {
-    public bool ChestHit = false;
+    bool ChestHit = false;
     public LootList loot;
+    public int maxLoot = 1;
 
     public void DropChest()
     {
@@ -14,7 +15,7 @@ public class ChestBehaviour : MonoBehaviour
 
         ChestHit = true;
 
-        DropItems(Random.Range(1, 3));
+        DropItems(Random.Range(1, maxLoot));
     }
     
     GameObject GetItem()

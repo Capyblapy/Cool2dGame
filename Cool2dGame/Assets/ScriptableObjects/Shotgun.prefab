@@ -217,7 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 9062e1850ce2b834a94a32f768dd2148, type: 2}
   icon: {fileID: 21300000, guid: 5ba35a947eccaec4a929ec08256ae752, type: 3}
-  currentAmmo: 0
+  currentAmmo: 5
 --- !u!61 &-8036365406177218747
 BoxCollider2D:
   m_ObjectHideFlags: 0
