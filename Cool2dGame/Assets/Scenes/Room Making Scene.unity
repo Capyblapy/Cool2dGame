@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomSizeX: 30
-  RoomSizeY: 30
+  RoomSizeY: 20
   islandFrequency: 0
   Tile: {fileID: 6073953382357197993}
 --- !u!4 &1104554699
