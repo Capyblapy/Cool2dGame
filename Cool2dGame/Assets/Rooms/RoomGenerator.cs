@@ -44,37 +44,41 @@ public class RoomGenerator : MonoBehaviour
     {
         
         // if statement saying if the x or y coordinate is 0 or the max size of the room, spawn a wall, and if it isnt, spawn floor
-        if(index.x == 0 )
+        if(index.x == 0 || index.x == RoomSizeX-1 || index.y == 0 || index.y == RoomSizeY-1)
         {
             
             GameObject spawnedTile = Instantiate(Tile);
-            Tile.GetComponent<TileScript>().setTile(tileTypes.wall);
+            spawnedTile.GetComponent<TileScript>().setTile(tileTypes.wall);
             spawnedTile.transform.position = this.transform.position + spawnOffset;
             
-            //roomTiles[(int)index.x, (int)index.y] = spawnedTile;
+            roomTiles[(int)index.x, (int)index.y] = spawnedTile;
         }
         else
         {
             GameObject spawnedTile = Instantiate(Tile);
-            Tile.GetComponent<TileScript>().setTile(tileTypes.floor);
+            spawnedTile.GetComponent<TileScript>().setTile(tileTypes.floor);
             spawnedTile.transform.position = this.transform.position + spawnOffset;
             
-            //roomTiles[(int)index.x, (int)index.y] = spawnedTile;
+            roomTiles[(int)index.x, (int)index.y] = spawnedTile;
         }
 
 
         
     }
 
-    /*void MakeIsland()
+    void MakeIsland()
     {
         for(int x = 0; x < RoomSizeX; x++)
         {
             for(int y = 0; y < RoomSizeY; y++)
             {
-                int rng = Random.Range(0, islandFrequency);
+                float rng = Random.Range(0, 100);
+                if(rng <= islandFrequency)
+                {
+                    
+                }
             }
         }
-    }*/
+    }
 
 }
