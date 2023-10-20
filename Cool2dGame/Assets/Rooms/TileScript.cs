@@ -16,7 +16,7 @@ public class TileScript : MonoBehaviour
 
     public void setTile(tileTypes newTileType)
     {
-        print(newTileType);
+        
         tileType = newTileType;
 
         switch (tileType)

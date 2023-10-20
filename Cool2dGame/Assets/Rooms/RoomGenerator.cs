@@ -60,24 +60,20 @@ public class RoomGenerator : MonoBehaviour
             spawnedTile.transform.position = this.transform.position + spawnOffset;
             
             roomTiles[(int)index.x, (int)index.y] = spawnedTile;
+
+            MakeIsland(spawnedTile);
         }
 
 
         
     }
 
-    void MakeIsland()
+    void MakeIsland(GameObject spawnedTile)
     {
-        for(int x = 0; x < RoomSizeX; x++)
+        float rng = Random.Range(0, 100);
+        if(rng <= islandFrequency)
         {
-            for(int y = 0; y < RoomSizeY; y++)
-            {
-                float rng = Random.Range(0, 100);
-                if(rng <= islandFrequency)
-                {
-                    
-                }
-            }
+            spawnedTile.GetComponent<TileScript>().setTile(tileTypes.wall);
         }
     }
 

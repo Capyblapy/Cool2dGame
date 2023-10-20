@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 305874906951516374}
   - component: {fileID: 305874906951516375}
   - component: {fileID: 305874906951516373}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -179,6 +179,8 @@ MonoBehaviour:
   Weapon: {fileID: 11400000, guid: d6bd86db9abf92049a633079b8dfea50, type: 2}
   weaponState: 0
   ammoPrefabs: {fileID: 11400000, guid: defd34ad6e63ece44a789a5442ad7c7a, type: 2}
+  currentAmmo: 0
+  BulletParent: {fileID: 0}
 --- !u!114 &305874906951516373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 305874907019812813}
   - component: {fileID: 305874907019812812}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
