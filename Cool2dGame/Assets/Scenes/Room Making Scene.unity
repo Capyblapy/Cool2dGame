@@ -239,7 +239,9 @@ MonoBehaviour:
   RoomSizeX: 30
   RoomSizeY: 20
   islandFrequency: 10
+  EnemySpawnRate: 1
   Tile: {fileID: 4861371391145181421, guid: 586e5d6fec1b740be9f6b45c08ee3c0b, type: 3}
+  Enemy: {fileID: 5866597900422723900, guid: 38eeac73e5328423183015c077b33684, type: 3}
 --- !u!4 &1104554699
 Transform:
   m_ObjectHideFlags: 0

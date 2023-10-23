@@ -7,8 +7,11 @@ public class RoomGenerator : MonoBehaviour
     public int RoomSizeX;
     public int RoomSizeY;
     public int islandFrequency;
+    public float EnemySpawnRate;
 
     public GameObject Tile;
+
+    public GameObject Enemy;
 
     public GameObject[,] roomTiles;
 
@@ -60,6 +63,8 @@ public class RoomGenerator : MonoBehaviour
             spawnedTile.transform.position = this.transform.position + spawnOffset;
             
             roomTiles[(int)index.x, (int)index.y] = spawnedTile;
+            
+            SpawnEnemy(Enemy, spawnedTile.transform.position);
 
             MakeIsland(spawnedTile);
         }
@@ -74,6 +79,18 @@ public class RoomGenerator : MonoBehaviour
         if(rng <= islandFrequency)
         {
             spawnedTile.GetComponent<TileScript>().setTile(tileTypes.wall);
+            
+        }
+    }
+
+    void SpawnEnemy(GameObject Enemy, Vector3 position)
+    {
+        float rng = Random.Range(1, 100);
+        if(rng <= EnemySpawnRate)
+        {
+            Instantiate(Enemy);
+            Enemy.transform.position = position;
+            
         }
     }
 
