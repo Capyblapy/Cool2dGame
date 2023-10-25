@@ -13,7 +13,11 @@ public class RoomGenerator : MonoBehaviour
 
     public GameObject Enemy;
 
+    public GameObject LootChest;
+
     public GameObject[,] roomTiles;
+
+    public List<GameObject> EnemyList;
 
 
     // Start is called before the first frame update
@@ -90,7 +94,16 @@ public class RoomGenerator : MonoBehaviour
         {
             Instantiate(Enemy);
             Enemy.transform.position = position;
+            EnemyList.Add(Enemy);
             
+        }
+    }
+
+    void SpawnLoot(GameObject LootChest)
+    {
+        if(EnemyList.Count == 0)
+        {
+            Instantiate(LootChest);
         }
     }
 
