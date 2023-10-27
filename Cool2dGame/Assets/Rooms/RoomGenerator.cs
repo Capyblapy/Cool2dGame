@@ -21,6 +21,8 @@ public class RoomGenerator : MonoBehaviour
 
     public List<GameObject> EnemyList;
 
+    public bool hasLootSpawned = false;
+
 
     void Awake()
     {
@@ -44,7 +46,12 @@ public class RoomGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(EnemyList.Count == 0){
+            if(hasLootSpawned = false){
+                SpawnLoot(LootChest);
+                hasLootSpawned = true;
+            }
+        }
     }
 
     
@@ -107,19 +114,17 @@ public class RoomGenerator : MonoBehaviour
         float rng = Random.Range(1, 100);
         if(rng <= EnemySpawnRate)
         {
-            Instantiate(Enemy);
-            Enemy.transform.position = position;
-            EnemyList.Add(Enemy);
+
+            GameObject EnemyInScene = Instantiate(Enemy);
+            EnemyInScene.transform.position = position;
+            EnemyList.Add(EnemyInScene);
             
         }
     }
 
     void SpawnLoot(GameObject LootChest)
     {
-        if(EnemyList.Count == 0)
-        {
-            Instantiate(LootChest);
-        }
+        Instantiate(LootChest);
     }
 
 }
