@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RoomGenerator : MonoBehaviour
 {
+    public static RoomGenerator Instance;
+
     public int RoomSizeX;
     public int RoomSizeY;
     public int islandFrequency;
@@ -19,6 +21,19 @@ public class RoomGenerator : MonoBehaviour
 
     public List<GameObject> EnemyList;
 
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

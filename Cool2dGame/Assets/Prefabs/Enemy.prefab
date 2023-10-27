@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5866597900422723900}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.496, y: -1.4959998, z: -0.03386657}
+  m_LocalPosition: {x: 16.496, y: 2.5040002, z: -0.03386657}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -156,6 +156,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
+  rg: {fileID: 0}
+  Enemy: {fileID: 5866597900422723900}
+  EnemyList: {fileID: 0}
 --- !u!58 &5866597900422723877
 CircleCollider2D:
   m_ObjectHideFlags: 0
