@@ -117,27 +117,31 @@ public class WeaponManager : MonoBehaviour
 
     void Shoot()
     {
-        if(weaponState == weaponStates.idle)
+        if (weaponState != weaponStates.idle)
+            return;
+
+        if (currentAmmo > 0)
         {
-            if (currentAmmo > 0)
+            weaponState = weaponStates.firing;
+            fireTimer = Weapon.fireTime;
+            currentAmmo -= 1;
+            switch (Weapon.AmmoType)
             {
-                weaponState = weaponStates.firing;
-                fireTimer = Weapon.fireTime;
-                currentAmmo -= 1;
-                switch (Weapon.AmmoType)
-                {
-                    case AmmoTypes.Normal:
-                        Projectile();
-                        break;
-                    case AmmoTypes.Freezing:
-                        break;
-                    default:
-                        break;
-                }
+                case AmmoTypes.Normal:
+                    Projectile();
+                    break;
+                case AmmoTypes.Freezing:
+                    Projectile();
+                    break;
+                case AmmoTypes.Fire:
+                    Projectile();
+                    break;
+                default:
+                    break;
             }
-            else
-                Reload();
         }
+        else
+            Reload();
     }
 
     void Projectile()

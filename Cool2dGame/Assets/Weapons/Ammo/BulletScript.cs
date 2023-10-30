@@ -48,6 +48,8 @@ public class BulletScript : MonoBehaviour
                 break;
             case AmmoTypes.Freezing:
                 break;
+            case AmmoTypes.Fire:
+                break;
             default:
                 break;
         }

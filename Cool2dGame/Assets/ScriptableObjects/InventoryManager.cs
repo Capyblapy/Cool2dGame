@@ -108,6 +108,7 @@ public class InventoryManager : MonoBehaviour
         col.gameObject.SetActive(false);
 
         SwapItem(true);
+        SwapItem(false);
     }
 
     void Update()

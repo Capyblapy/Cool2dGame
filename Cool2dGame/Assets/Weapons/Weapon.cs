@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum FireTypes { SemiAutomatic, Automatic, BoltAction}
-public enum AmmoTypes { Normal, Freezing }
+public enum AmmoTypes { Normal, Freezing, Fire}
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Weapon", order = 1)]
 public class Weapon : ScriptableObject

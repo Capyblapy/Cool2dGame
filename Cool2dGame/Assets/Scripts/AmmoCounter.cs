@@ -25,9 +25,6 @@ public class AmmoCounter : MonoBehaviour
         }
         else
         {
-            //MaxAmmo.text = "/" + weapon.Ammo.ToString();
-            CurrentAmmo.text = wm.currentAmmo.ToString();
-
             if (wm.currentAmmo <= 0)
                 CurrentAmmo.text = "<color=red>"+wm.currentAmmo.ToString()+"</color>"+ "/"+weapon.Ammo.ToString();
             else
