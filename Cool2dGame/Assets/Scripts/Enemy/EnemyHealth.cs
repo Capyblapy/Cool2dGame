@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public float Health = 100f;
-    public RoomGenerator rg;
+    RoomGenerator rg;
     public GameObject Enemy;
     public GameObject EnemyList;
   
@@ -16,6 +16,9 @@ public class EnemyHealth : MonoBehaviour
     
     void FixedUpdate()
     {
+        if (rg == null)
+            return;
+
         if (Health <= 0)
         {
             rg.EnemyList.Remove(Enemy);
