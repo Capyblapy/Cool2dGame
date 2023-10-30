@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum tileTypes {floor, wall, hazard, chest};
+public enum tileTypes {floor, wall, hazard, chest, door};
 
 
 public class TileScript : MonoBehaviour
@@ -32,6 +32,9 @@ public class TileScript : MonoBehaviour
             case tileTypes.hazard:
                 break;
             case tileTypes.chest:
+                break;
+            case tileTypes.door:
+                tileCol.enabled = true;
                 break;
             default:
                 break;
