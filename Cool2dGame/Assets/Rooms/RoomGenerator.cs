@@ -4,14 +4,38 @@ using UnityEngine;
 
 public class RoomGenerator : MonoBehaviour
 {
+    public static RoomGenerator Instance;
+
     public int RoomSizeX;
     public int RoomSizeY;
     public int islandFrequency;
+    public float EnemySpawnRate;
 
     public GameObject Tile;
 
+    public GameObject Enemy;
+
+    public GameObject LootChest;
+
     public GameObject[,] roomTiles;
 
+    public List<GameObject> EnemyList;
+
+    public bool hasLootSpawned = false;
+
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +46,12 @@ public class RoomGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(EnemyList.Count == 0){
+            if(hasLootSpawned = false){
+                SpawnLoot(LootChest);
+                hasLootSpawned = true;
+            }
+        }
     }
 
     
@@ -42,35 +71,60 @@ public class RoomGenerator : MonoBehaviour
 
     void SpawnTile(Vector3 spawnOffset, Vector2 index)
     {
+        
         // if statement saying if the x or y coordinate is 0 or the max size of the room, spawn a wall, and if it isnt, spawn floor
         if(index.x == 0 || index.x == RoomSizeX-1 || index.y == 0 || index.y == RoomSizeY-1)
         {
+            
             GameObject spawnedTile = Instantiate(Tile);
-            Tile.GetComponent<TileScript>().setTile(tileTypes.wall);
+            spawnedTile.GetComponent<TileScript>().setTile(tileTypes.wall);
             spawnedTile.transform.position = this.transform.position + spawnOffset;
+            
             roomTiles[(int)index.x, (int)index.y] = spawnedTile;
         }
         else
         {
             GameObject spawnedTile = Instantiate(Tile);
-            Tile.GetComponent<TileScript>().setTile(tileTypes.floor);
+            spawnedTile.GetComponent<TileScript>().setTile(tileTypes.floor);
             spawnedTile.transform.position = this.transform.position + spawnOffset;
+            
             roomTiles[(int)index.x, (int)index.y] = spawnedTile;
+            
+            SpawnEnemy(Enemy, spawnedTile.transform.position);
+
+            MakeIsland(spawnedTile);
         }
 
 
         
     }
 
-    void MakeIsland()
+    void MakeIsland(GameObject spawnedTile)
     {
-        for(int x = 0; x < RoomSizeX; x++)
+        float rng = Random.Range(0, 100);
+        if(rng <= islandFrequency)
         {
-            for(int y = 0; y < RoomSizeY; y++)
-            {
-                int rng = Random.Range(0, islandFrequency);
-            }
+            spawnedTile.GetComponent<TileScript>().setTile(tileTypes.wall);
+            
         }
+    }
+
+    void SpawnEnemy(GameObject Enemy, Vector3 position)
+    {
+        float rng = Random.Range(1, 100);
+        if(rng <= EnemySpawnRate)
+        {
+
+            GameObject EnemyInScene = Instantiate(Enemy);
+            EnemyInScene.transform.position = position;
+            EnemyList.Add(EnemyInScene);
+            
+        }
+    }
+
+    void SpawnLoot(GameObject LootChest)
+    {
+        Instantiate(LootChest);
     }
 
 }
