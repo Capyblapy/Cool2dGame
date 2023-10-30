@@ -47,7 +47,7 @@ public class RoomGenerator : MonoBehaviour
     void Update()
     {
         if(EnemyList.Count == 0){
-            if(hasLootSpawned = false){
+            if(hasLootSpawned == false){
                 SpawnLoot(LootChest);
                 hasLootSpawned = true;
             }

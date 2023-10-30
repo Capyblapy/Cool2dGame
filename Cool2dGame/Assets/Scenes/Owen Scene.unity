@@ -1992,7 +1992,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945911663}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e653d82ec3aa5448b05e0acab31a74d, type: 3}
   m_Name: 
@@ -2016,7 +2016,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
-  rg: {fileID: 0}
   Enemy: {fileID: 0}
   EnemyList: {fileID: 0}
 --- !u!58 &1945911670
