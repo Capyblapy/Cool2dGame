@@ -71,20 +71,28 @@ public class RoomGenerator : MonoBehaviour
 
     void SpawnTile(Vector3 spawnOffset, Vector2 index)
     {
-        
+        GameObject spawnedTile = Instantiate(Tile);
+        spawnedTile.transform.SetParent(this.transform, false);
+
         // if statement saying if the x or y coordinate is 0 or the max size of the room, spawn a wall, and if it isnt, spawn floor
         if(index.x == 0 || index.x == RoomSizeX-1 || index.y == 0 || index.y == RoomSizeY-1)
         {
-            
-            GameObject spawnedTile = Instantiate(Tile);
             spawnedTile.GetComponent<TileScript>().setTile(tileTypes.wall);
+            spawnedTile.transform.position = this.transform.position + spawnOffset;
+            
+            roomTiles[(int)index.x, (int)index.y] = spawnedTile;
+        }
+        else if(index.x == RoomSizeX/2 && index.y == RoomSizeY/2)
+        {
+            spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door);
             spawnedTile.transform.position = this.transform.position + spawnOffset;
             
             roomTiles[(int)index.x, (int)index.y] = spawnedTile;
         }
         else
         {
-            GameObject spawnedTile = Instantiate(Tile);
+            
+
             spawnedTile.GetComponent<TileScript>().setTile(tileTypes.floor);
             spawnedTile.transform.position = this.transform.position + spawnOffset;
             

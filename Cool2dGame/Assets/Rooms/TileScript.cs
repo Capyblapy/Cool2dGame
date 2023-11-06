@@ -27,9 +27,11 @@ public class TileScript : MonoBehaviour
             case tileTypes.floor:
                 tileCol.enabled = false;
                 tileRend.sprite = tileSprites[0];
+                this.name = "Floor";
                 break;
             case tileTypes.wall:
                 tileRend.sprite = tileSprites[1];
+                this.name = "Wall";
                 break;
             case tileTypes.hazard:
                 break;
@@ -37,6 +39,7 @@ public class TileScript : MonoBehaviour
                 break;
             case tileTypes.door:
                 tileRend.sprite = tileSprites[0];
+                this.name = "Door";
                 break;
             default:
                 break;

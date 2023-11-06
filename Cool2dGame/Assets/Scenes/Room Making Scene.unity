@@ -414,8 +414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c09761efb0490497c997f923cfb362ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomSizeX: 31
-  RoomSizeY: 21
+  RoomSizeX: 30
+  RoomSizeY: 20
   islandFrequency: 10
   EnemySpawnRate: 1
   Tile: {fileID: 4861371391145181421, guid: 586e5d6fec1b740be9f6b45c08ee3c0b, type: 3}
