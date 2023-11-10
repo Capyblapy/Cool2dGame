@@ -22,6 +22,7 @@ public class RoomGenerator : MonoBehaviour
     public List<GameObject> EnemyList;
 
     public bool hasLootSpawned = false;
+    int ChosenDoor;
 
 
     void Awake()
@@ -54,9 +55,10 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
-    
     void GenerateRoom()
     {
+        ChosenDoor = Random.Range(1,4);
+        print(ChosenDoor);
         roomTiles = new GameObject[RoomSizeX, RoomSizeY];
         // Makes a for loop that activates the SpawnTile function inside the given coordinates
         for (int x = 0; x < RoomSizeX; x++)
@@ -81,14 +83,35 @@ public class RoomGenerator : MonoBehaviour
             spawnedTile.transform.position = this.transform.position + spawnOffset;
             
             roomTiles[(int)index.x, (int)index.y] = spawnedTile;
+
+            switch (ChosenDoor)
+            {
+                case 1:
+                    if(index.x == 0 && index.y == RoomSizeY/2)
+                        spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door); 
+
+                    break;
+                
+                case 2:
+                    if(index.x == RoomSizeX/2 && index.y == 0)
+                        spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door); 
+
+                    break;
+
+                case 3:
+                    if(index.x == RoomSizeX-1 && index.y == RoomSizeY/2)
+                        spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door);
+
+                    break;
+
+                case 4:
+                    if(index.x == RoomSizeX/2 && index.y == RoomSizeY-1)
+                        spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door);
+
+                    break;
+            }
         }
-        else if(index.x == RoomSizeX/2 && index.y == RoomSizeY/2)
-        {
-            spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door);
-            spawnedTile.transform.position = this.transform.position + spawnOffset;
-            
-            roomTiles[(int)index.x, (int)index.y] = spawnedTile;
-        }
+        
         else
         {
             
