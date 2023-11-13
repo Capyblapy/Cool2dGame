@@ -207,7 +207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a30a5362303b57949a4ff561d278ce61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Inventory: []
+  Inventory:
+  - {fileID: 0}
   Position: 0
   equiped: {fileID: 0}
   upIcon: {fileID: 0}

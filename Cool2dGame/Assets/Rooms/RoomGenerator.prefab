@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4529684574738556384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4529684574738556386}
+  - component: {fileID: 4529684574738556387}
+  m_Layer: 0
+  m_Name: RoomGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 2800000, guid: 7af5f1b9cb7fc7645a9f27f070fbe2fd, type: 3}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4529684574738556386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4529684574738556384}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.504, y: -4.496, z: -0.03386657}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4529684574738556387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4529684574738556384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09761efb0490497c997f923cfb362ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoomSizeX: 0
+  RoomSizeY: 0
+  islandFrequency: 10
+  EnemySpawnRate: 1
+  Player: {fileID: 0}
+  Tile: {fileID: 4861371391145181421, guid: 586e5d6fec1b740be9f6b45c08ee3c0b, type: 3}
+  Enemy: {fileID: 5866597900422723900, guid: 38eeac73e5328423183015c077b33684, type: 3}
+  LootChest: {fileID: 908390520067151063, guid: cbdd9716b51a742559a54d6cc3fdd1b8, type: 3}
+  EnemyList: []
+  hasLootSpawned: 0
+  firstRoom: 0

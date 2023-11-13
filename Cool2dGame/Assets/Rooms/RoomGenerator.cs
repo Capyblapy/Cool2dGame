@@ -11,6 +11,8 @@ public class RoomGenerator : MonoBehaviour
     public int islandFrequency;
     public float EnemySpawnRate;
 
+    public GameObject Player;
+
     public GameObject Tile;
 
     public GameObject Enemy;
@@ -23,7 +25,7 @@ public class RoomGenerator : MonoBehaviour
 
     public bool hasLootSpawned = false;
     int ChosenDoor;
-
+    public bool firstRoom = false;
 
     void Awake()
     {
@@ -57,7 +59,9 @@ public class RoomGenerator : MonoBehaviour
 
     void GenerateRoom()
     {
-        ChosenDoor = Random.Range(1,4);
+        RoomSizeX = Random.Range(10, 41);
+        RoomSizeY = Random.Range(10,41);
+        ChosenDoor = Random.Range(1,5); // Random.Range is exclusive for ints, Need to do 1,5 for a random number of 1 to 4
         print(ChosenDoor);
         roomTiles = new GameObject[RoomSizeX, RoomSizeY];
         // Makes a for loop that activates the SpawnTile function inside the given coordinates
@@ -68,6 +72,7 @@ public class RoomGenerator : MonoBehaviour
                 SpawnTile(new Vector3(x, y, 0), new Vector2(x, y));
             }
         }
+
 
     }
 
@@ -83,7 +88,6 @@ public class RoomGenerator : MonoBehaviour
             spawnedTile.transform.position = this.transform.position + spawnOffset;
             
             roomTiles[(int)index.x, (int)index.y] = spawnedTile;
-
             switch (ChosenDoor)
             {
                 case 1:
@@ -126,7 +130,15 @@ public class RoomGenerator : MonoBehaviour
             MakeIsland(spawnedTile);
         }
 
+        if (spawnedTile == roomTiles[RoomSizeX/2, RoomSizeY/2] && firstRoom == true)
+        {
+            print("Centre tile!");
+            spawnedTile.GetComponent<TileScript>().setTile(tileTypes.floor);
+            // spawn player code here wow :o
+            Player.transform.position = spawnedTile.transform.position;
 
+            firstRoom = false;
+        }
         
     }
 
