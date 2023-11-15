@@ -4,20 +4,15 @@ using UnityEngine;
 
 public class RoomGenerator : MonoBehaviour
 {
-    public static RoomGenerator Instance;
-
     public int RoomSizeX;
     public int RoomSizeY;
     public int islandFrequency;
     public float EnemySpawnRate;
 
-    public GameObject Player;
-
-    public GameObject Tile;
-
-    public GameObject Enemy;
-
-    public GameObject LootChest;
+    GameObject Player;
+    GameObject Tile;
+    GameObject Enemy;
+    GameObject LootChest;
 
     public GameObject[,] roomTiles;
 
@@ -26,29 +21,24 @@ public class RoomGenerator : MonoBehaviour
     public bool hasLootSpawned = false;
     int ChosenDoor;
     public bool firstRoom = false;
-
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            Instance = this;
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
+    public bool roomGenerated = false;
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        GenerateRoom();
+        Player = MajorGenerator.Instance.Player;
+        Tile = MajorGenerator.Instance.Tile;
+        Enemy = MajorGenerator.Instance.Enemy;
+        LootChest = MajorGenerator.Instance.LootChest;
     }
+
 
     // Update is called once per frame
     void Update()
     {
+        if (roomGenerated == false)
+            return;
+
         if(EnemyList.Count == 0){
             if(hasLootSpawned == false){
                 SpawnLoot(LootChest);
@@ -57,7 +47,7 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
-    void GenerateRoom()
+    public void GenerateRoom()
     {
         RoomSizeX = Random.Range(10, 41);
         RoomSizeY = Random.Range(10,41);
@@ -73,7 +63,7 @@ public class RoomGenerator : MonoBehaviour
             }
         }
 
-
+        roomGenerated = true;
     }
 
     void SpawnTile(Vector3 spawnOffset, Vector2 index)
