@@ -29,26 +29,54 @@ public class MajorGenerator : MonoBehaviour
 
     void Start()
     {
-        GameObject newRoom = Instantiate(roomPrefab);
-        newRoom.transform.position = transform.position;
-        newRoom.transform.SetParent(this.transform, false);
-
-        RoomGenerator roomGen = newRoom.GetComponent<RoomGenerator>();
-        roomGen.firstRoom = true;
-        roomGen.GenerateRoom();
-
-        roomList.Add(newRoom);
+        summonRoom(true, new Vector3(0,0,0), Random.Range(1, 5), Random.Range(10, 41), Random.Range(10, 41));
     }
 
-    public void newRoom()
+    public void generateRoom(GameObject originRoom)
     {
-        GameObject newRoom = Instantiate(roomPrefab);
-        newRoom.transform.position = transform.position;
-        newRoom.transform.SetParent(this.transform, false);
+        RoomGenerator rg = originRoom.GetComponent<RoomGenerator>();
+        // Set up
+        Vector3 newOffset = new Vector3(0,0);
+        int newX = Random.Range(10, 41);
+        int newY = Random.Range(10, 41);
 
-        RoomGenerator roomGen = newRoom.GetComponent<RoomGenerator>();
+
+        // Figures out new door & Offset for each door
+        int newDoor = 0;
+        switch (rg.ChosenDoor)
+        {
+            case 1: // Left
+                newDoor = 3;
+                break;
+            case 2: // Bottom
+                newDoor = 4;
+                newOffset = new Vector3(rg.RoomSizeX, newY - rg.RoomSizeY, 0);
+                break;
+            case 3: // Right
+                newDoor = 1;
+                break;
+            case 4: // Top
+                newDoor = 2;
+                newOffset = new Vector3(newX - rg.RoomSizeX, rg.RoomSizeY, 0);
+                break;
+        }
+
+        summonRoom(false, newOffset, newDoor, newX, newY);
+    }
+
+    void summonRoom(bool newBool, Vector3 offsetVector, int Door, int rsX, int rsY)
+    {
+        GameObject room = Instantiate(roomPrefab);
+        room.transform.position = transform.position + offsetVector;
+        room.transform.SetParent(this.transform, false);
+
+        RoomGenerator roomGen = room.GetComponent<RoomGenerator>();
+        roomGen.firstRoom = newBool;
+        roomGen.ChosenDoor = Door;
+        roomGen.RoomSizeX = rsX;
+        roomGen.RoomSizeY = rsY;
         roomGen.GenerateRoom();
 
-        roomList.Add(newRoom);
+        roomList.Add(room);
     }
 }

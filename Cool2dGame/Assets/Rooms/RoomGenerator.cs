@@ -19,7 +19,7 @@ public class RoomGenerator : MonoBehaviour
     public List<GameObject> EnemyList;
 
     public bool hasLootSpawned = false;
-    int ChosenDoor;
+    public int ChosenDoor;
     public bool firstRoom = false;
     public bool roomGenerated = false;
 
@@ -41,7 +41,7 @@ public class RoomGenerator : MonoBehaviour
 
         if(EnemyList.Count == 0){
             if(hasLootSpawned == false){
-                SpawnLoot(LootChest);
+                roomWin();
                 hasLootSpawned = true;
             }
         }
@@ -49,9 +49,6 @@ public class RoomGenerator : MonoBehaviour
 
     public void GenerateRoom()
     {
-        RoomSizeX = Random.Range(10, 41);
-        RoomSizeY = Random.Range(10,41);
-        ChosenDoor = Random.Range(1,5); // Random.Range is exclusive for ints, Need to do 1,5 for a random number of 1 to 4
         print(ChosenDoor);
         roomTiles = new GameObject[RoomSizeX, RoomSizeY];
         // Makes a for loop that activates the SpawnTile function inside the given coordinates
@@ -81,25 +78,25 @@ public class RoomGenerator : MonoBehaviour
             switch (ChosenDoor)
             {
                 case 1:
-                    if(index.x == 0 && index.y == RoomSizeY/2)
+                    if(index.x == 0 && index.y == RoomSizeY/2) // left
                         spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door); 
 
                     break;
                 
                 case 2:
-                    if(index.x == RoomSizeX/2 && index.y == 0)
+                    if(index.x == RoomSizeX/2 && index.y == 0) // bottom
                         spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door); 
 
                     break;
 
                 case 3:
-                    if(index.x == RoomSizeX-1 && index.y == RoomSizeY/2)
+                    if(index.x == RoomSizeX-1 && index.y == RoomSizeY/2) // right
                         spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door);
 
                     break;
 
                 case 4:
-                    if(index.x == RoomSizeX/2 && index.y == RoomSizeY-1)
+                    if(index.x == RoomSizeX/2 && index.y == RoomSizeY-1) // top
                         spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door);
 
                     break;
@@ -155,9 +152,13 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
-    void SpawnLoot(GameObject LootChest)
+    void roomWin()
     {
-        Instantiate(LootChest);
-    }
+        // Loot Chest
+        GameObject newLoot = Instantiate(LootChest);
+        newLoot.transform.position = roomTiles[RoomSizeX / 2, RoomSizeY / 2].transform.position;
 
+        // New Room
+        MajorGenerator.Instance.generateRoom(this.gameObject);
+    }
 }
