@@ -50,14 +50,13 @@ public class MajorGenerator : MonoBehaviour
                 break;
             case 2: // Bottom
                 newDoor = 4;
-                newOffset = new Vector3(newX - rg.RoomSizeX, rg.RoomSizeY, 0);
                 break;
             case 3: // Right
                 newDoor = 1;
                 break;
             case 4: // Top
                 newDoor = 2;
-                newOffset = new Vector3(rg.RoomSizeX/2, rg.RoomSizeY-1, 0);
+                newOffset = new Vector3((rg.RoomSizeX/2)-newX/2, rg.RoomSizeY-1, 0);
                 break;
         }
 
