@@ -117,12 +117,16 @@ public class RoomGenerator : MonoBehaviour
             MakeIsland(spawnedTile);
         }
 
-        if (spawnedTile == roomTiles[RoomSizeX/2, RoomSizeY/2] && firstRoom == true)
+
+        if (firstRoom == true)
         {
-            print("Centre tile!");
-            spawnedTile.GetComponent<TileScript>().setTile(tileTypes.floor);
-            // spawn player code here wow :o
-            Player.transform.position = spawnedTile.transform.position;
+            if (spawnedTile == roomTiles[RoomSizeX / 2, RoomSizeY / 2] && firstRoom == true)
+            {
+                print("Centre tile!");
+                spawnedTile.GetComponent<TileScript>().setTile(tileTypes.floor);
+                // spawn player code here wow :o
+                Player.transform.position = spawnedTile.transform.position;
+            }
 
             firstRoom = false;
         }
