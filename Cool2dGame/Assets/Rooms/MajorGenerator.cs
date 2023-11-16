@@ -50,7 +50,7 @@ public class MajorGenerator : MonoBehaviour
                 break;
             case 2: // Bottom
                 newDoor = 4;
-                newOffset = new Vector3((rg.RoomSizeX / 2) - (newX / 2), (rg.RoomSizeY*-1)-2, 0);
+                newOffset = new Vector3((rg.RoomSizeX / 2) - (newX / 2), (rg.RoomSizeY*-1), 0);
                 break;
             case 3: // Right
                 newDoor = 1;
