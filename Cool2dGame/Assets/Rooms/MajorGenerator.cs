@@ -29,7 +29,7 @@ public class MajorGenerator : MonoBehaviour
 
     void Start()
     {
-        summonRoom(true, new Vector3(0,0,0), Random.Range(4,5), Random.Range(10, 41), Random.Range(10, 41));
+        summonRoom(true, new Vector3(0,0,0), Random.Range(2,3), Random.Range(10, 41), Random.Range(10, 41));
     }
 
     public void generateRoom(GameObject originRoom)
@@ -50,13 +50,14 @@ public class MajorGenerator : MonoBehaviour
                 break;
             case 2: // Bottom
                 newDoor = 4;
+                newOffset = new Vector3((rg.RoomSizeX / 2) - (newX / 2), (rg.RoomSizeY*-1)-2, 0);
                 break;
             case 3: // Right
                 newDoor = 1;
                 break;
             case 4: // Top
                 newDoor = 2;
-                newOffset = new Vector3((rg.RoomSizeX/2)-newX/2, rg.RoomSizeY-1, 0);
+                newOffset = new Vector3((rg.RoomSizeX/2)-(newX/2), rg.RoomSizeY-1, 0);
                 break;
         }
 

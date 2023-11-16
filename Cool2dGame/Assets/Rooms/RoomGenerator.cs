@@ -105,8 +105,6 @@ public class RoomGenerator : MonoBehaviour
         
         else
         {
-            
-
             spawnedTile.GetComponent<TileScript>().setTile(tileTypes.floor);
             spawnedTile.transform.position = this.transform.position + spawnOffset;
             
@@ -120,7 +118,7 @@ public class RoomGenerator : MonoBehaviour
 
         if (firstRoom == true)
         {
-            if (spawnedTile == roomTiles[RoomSizeX / 2, RoomSizeY / 2] && firstRoom == true)
+            if (spawnedTile == roomTiles[RoomSizeX / 2, RoomSizeY / 2])
             {
                 print("Centre tile!");
                 spawnedTile.GetComponent<TileScript>().setTile(tileTypes.floor);
