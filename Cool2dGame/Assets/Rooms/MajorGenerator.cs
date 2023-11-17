@@ -96,4 +96,11 @@ public class MajorGenerator : MonoBehaviour
 
         roomList.Add(room);
     }
+
+    public void PlayerTrigger(GameObject room)
+    {
+        if (room == null) return;
+
+        print(room);
+    }
 }

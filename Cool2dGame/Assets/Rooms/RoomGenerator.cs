@@ -76,7 +76,7 @@ public class RoomGenerator : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            print("GAMING@!!");
+            MajorGenerator.Instance.PlayerTrigger(this.gameObject);
         }
     }
 
