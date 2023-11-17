@@ -46,38 +46,40 @@ public class MajorGenerator : MonoBehaviour
 
 
         // Figures out new door & Offset for each door
-        int newDoor = 0;
+        int openDoor = 0;
         switch (rg.unlockDoor)
         {
             case 1: // Left
-                newDoor = 3;
+                openDoor = 3;
                 newOffset = new Vector3((newX * -1) + 1, (rg.RoomSizeY / 2) - (newY / 2));
                 break;
             case 2: // Bottom
-                newDoor = 4;
+                openDoor = 4;
                 newOffset = new Vector3((rg.RoomSizeX / 2) - (newX / 2), (newY * -1) + 1);
                 break;
             case 3: // Right
-                newDoor = 1;
+                openDoor = 1;
                 newOffset = new Vector3(rg.RoomSizeX - 1, (rg.RoomSizeY / 2) - (newY / 2));
                 break;
             case 4: // Top
-                newDoor = 2;
+                openDoor = 2;
                 newOffset = new Vector3((rg.RoomSizeX / 2) - (newX / 2), rg.RoomSizeY - 1);
                 break;
         }
 
-        int openDoor = 0;
-        openDoor = Random.Range(1, 5);
-        while (openDoor == newDoor)
-            openDoor = Random.Range(1, 5);
+        int unlockDoor = 0;
+        unlockDoor = Random.Range(1, 5);
+        while (unlockDoor == openDoor)
+            unlockDoor = Random.Range(1, 5);
 
-        summonRoom(false, newOffset, openDoor, newDoor, newX, newY);
+        summonRoom(false, newOffset, openDoor, unlockDoor, newX, newY);
     }
 
-    void summonRoom(bool newBool, Vector3 offsetVector, int openDoor,int newDoor, int rsX, int rsY)
+    void summonRoom(bool newBool, Vector3 offsetVector, int openDoor,int unlockDoor, int rsX, int rsY)
     {
         GameObject room = Instantiate(roomPrefab);
+        print(roomList.Last().transform.position);
+        print(offsetVector);
         print(roomList.Last().transform.position + offsetVector);
         room.transform.position = roomList.Last().transform.position + offsetVector;
         room.transform.SetParent(this.transform, false);
@@ -85,7 +87,7 @@ public class MajorGenerator : MonoBehaviour
         RoomGenerator roomGen = room.GetComponent<RoomGenerator>();
         roomGen.firstRoom = newBool;
         roomGen.openDoor = openDoor;
-        roomGen.unlockDoor = newDoor;
+        roomGen.unlockDoor = unlockDoor;
         roomGen.RoomSizeX = rsX;
         roomGen.RoomSizeY = rsY;
         roomGen.GenerateRoom();

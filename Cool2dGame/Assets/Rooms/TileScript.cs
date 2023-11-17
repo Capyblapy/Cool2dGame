@@ -82,6 +82,7 @@ public class TileScript : MonoBehaviour
             case tileTypes.door:
                 // sprite change stuff here
                 tileCol.enabled = false;
+                this.name = "UnlockedDoor";
                 break;
         }
     }
