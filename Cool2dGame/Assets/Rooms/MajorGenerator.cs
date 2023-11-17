@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro.EditorUtilities;
+using UnityEditor;
 using UnityEngine;
 
 public class MajorGenerator : MonoBehaviour
@@ -100,7 +102,23 @@ public class MajorGenerator : MonoBehaviour
     public void PlayerTrigger(GameObject room)
     {
         if (room == null) return;
-
         print(room);
+
+        int roomIndex = roomList.IndexOf(room);
+        GameObject pRoom = roomList[roomIndex - 1];
+        GameObject fRoom;
+
+        if (roomIndex == roomList.Count - 1)
+            fRoom = room;
+        else
+            fRoom = roomList[roomIndex + 1];
+
+        for (int i = 0; i < roomList.Count; i++)
+        {
+            if (roomList[i] == pRoom || roomList[i] == fRoom || roomList[i] == room || roomList[i] == this.gameObject)
+                roomList[i].SetActive(true);
+            else
+                roomList[i].SetActive(false);
+        }
     }
 }

@@ -209,6 +209,7 @@ public class RoomGenerator : MonoBehaviour
             GameObject EnemyInScene = Instantiate(Enemy);
             EnemyInScene.transform.position = position;
             EnemyList.Add(EnemyInScene);
+            Enemy.transform.SetParent(this.transform, false);
             
         }
     }
