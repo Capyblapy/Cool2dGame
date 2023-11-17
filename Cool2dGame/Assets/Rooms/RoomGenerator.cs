@@ -19,7 +19,8 @@ public class RoomGenerator : MonoBehaviour
     public List<GameObject> EnemyList;
 
     public bool hasLootSpawned = false;
-    public int ChosenDoor;
+    public int unlockDoor;
+    public int openDoor;
     public bool firstRoom = false;
     public bool roomGenerated = false;
 
@@ -49,7 +50,7 @@ public class RoomGenerator : MonoBehaviour
 
     public void GenerateRoom()
     {
-        print(ChosenDoor);
+        print(unlockDoor);
         roomTiles = new GameObject[RoomSizeX, RoomSizeY];
         // Makes a for loop that activates the SpawnTile function inside the given coordinates
         for (int x = 0; x < RoomSizeX; x++)
@@ -75,7 +76,7 @@ public class RoomGenerator : MonoBehaviour
             spawnedTile.transform.position = this.transform.position + spawnOffset;
             
             roomTiles[(int)index.x, (int)index.y] = spawnedTile;
-            switch (ChosenDoor)
+            switch (openDoor)
             {
                 case 1:
                     if(index.x == 0 && index.y == RoomSizeY/2) // left
@@ -98,6 +99,48 @@ public class RoomGenerator : MonoBehaviour
                 case 4:
                     if(index.x == RoomSizeX/2 && index.y == RoomSizeY-1) // top
                         spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door);
+
+                    break;
+            }
+
+            switch (unlockDoor)
+            {
+                case 0:
+                    break;
+
+                case 1:
+                    if (index.x == 0 && index.y == RoomSizeY / 2) // left
+                    {
+                        spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door);
+                        spawnedTile.GetComponent<TileScript>().Action();
+                    }
+
+                    break;
+
+                case 2:
+                    if (index.x == RoomSizeX / 2 && index.y == 0) // bottom
+                    {
+                        spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door);
+                        spawnedTile.GetComponent<TileScript>().Action();
+                    }
+
+                    break;
+
+                case 3:
+                    if (index.x == RoomSizeX - 1 && index.y == RoomSizeY / 2) // right
+                    {
+                        spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door);
+                        spawnedTile.GetComponent<TileScript>().Action();
+                    }
+
+                    break;
+
+                case 4:
+                    if (index.x == RoomSizeX / 2 && index.y == RoomSizeY - 1) // top
+                    {
+                        spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door);
+                        spawnedTile.GetComponent<TileScript>().Action();
+                    }
 
                     break;
             }

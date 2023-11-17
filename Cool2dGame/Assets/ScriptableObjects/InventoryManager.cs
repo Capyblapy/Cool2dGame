@@ -95,7 +95,6 @@ public class InventoryManager : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        print(col.gameObject.name);
         if (col.gameObject.tag != "Loot")
             return;
 

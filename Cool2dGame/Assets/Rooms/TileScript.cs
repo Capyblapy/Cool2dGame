@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public enum tileTypes {floor, wall, hazard, chest, door};
@@ -15,6 +16,7 @@ public class TileScript : MonoBehaviour
     public Sprite[] tileSprites;
 
     List<GameObject> EnemyList;
+    bool won = false;
 
     public void setTile(tileTypes newTileType)
     {
@@ -55,12 +57,32 @@ public class TileScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(tileType == tileTypes.door)
+        if (tileType == tileTypes.door && won == false)
         {
             EnemyList = transform.parent.GetComponent<RoomGenerator>().EnemyList;
             if(EnemyList.Count == 0){
-                tileCol.enabled = false;
+                Action();
+                won = true;
             } 
+        }
+    }
+
+    public void Action()
+    {
+        switch (tileType)
+        {
+            case tileTypes.floor:
+                break;
+            case tileTypes.wall:
+                break;
+            case tileTypes.hazard:
+                break;
+            case tileTypes.chest:
+                break;
+            case tileTypes.door:
+                // sprite change stuff here
+                tileCol.enabled = false;
+                break;
         }
     }
 }
