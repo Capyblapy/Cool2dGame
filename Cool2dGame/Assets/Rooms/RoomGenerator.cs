@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomGenerator : MonoBehaviour
@@ -23,6 +24,8 @@ public class RoomGenerator : MonoBehaviour
     public int openDoor;
     public bool firstRoom = false;
     public bool roomGenerated = false;
+
+    BoxCollider2D roomTrigger;
 
     // Start is called before the first frame update
     private void Awake()
@@ -61,7 +64,17 @@ public class RoomGenerator : MonoBehaviour
             }
         }
 
+        roomTrigger = this.AddComponent<BoxCollider2D>();
+        roomTrigger.isTrigger = true;
+        roomTrigger.offset = new Vector2(RoomSizeX / 2, RoomSizeY / 2);
+        roomTrigger.size = new Vector2(RoomSizeX - 2, RoomSizeY - 2);
+
         roomGenerated = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        print(other.gameObject);
     }
 
     void SpawnTile(Vector3 spawnOffset, Vector2 index)

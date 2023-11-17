@@ -15,6 +15,8 @@ public class MajorGenerator : MonoBehaviour
     public GameObject Enemy;
     public GameObject LootChest;
 
+    public int RoomLocation = 1;
+
     void Awake()
     {
         if (Instance == null)
