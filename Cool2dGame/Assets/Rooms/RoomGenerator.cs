@@ -72,9 +72,12 @@ public class RoomGenerator : MonoBehaviour
         roomGenerated = true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        print(other.gameObject);
+        if(other.tag == "Player")
+        {
+            print("GAMING@!!");
+        }
     }
 
     void SpawnTile(Vector3 spawnOffset, Vector2 index)
@@ -89,7 +92,7 @@ public class RoomGenerator : MonoBehaviour
             spawnedTile.transform.position = this.transform.position + spawnOffset;
             
             roomTiles[(int)index.x, (int)index.y] = spawnedTile;
-            switch (openDoor)
+            switch (unlockDoor)
             {
                 case 1:
                     if(index.x == 0 && index.y == RoomSizeY/2) // left
@@ -116,7 +119,7 @@ public class RoomGenerator : MonoBehaviour
                     break;
             }
 
-            switch (unlockDoor)
+            switch (openDoor)
             {
                 case 0:
                     break;

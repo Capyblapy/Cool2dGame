@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - Loot
+  - Generator
   layers:
   - Default
   - TransparentFX

@@ -67,7 +67,7 @@ public class BulletScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         //Debug.DrawLine(OldPos, transform.position, Color.red, Weapon.fireTime - 0.01f)
-        if (CompareTag(col.gameObject.tag) == true)
+        if (CompareTag(col.gameObject.tag) == true || col.gameObject.tag == "Generator")
             return;
 
         if (col.gameObject.GetComponent<PlayerHealth>() != null)

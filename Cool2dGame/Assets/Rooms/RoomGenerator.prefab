@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4529684574738556387}
   m_Layer: 0
   m_Name: RoomGenerator
-  m_TagString: Untagged
+  m_TagString: Generator
   m_Icon: {fileID: 2800000, guid: 7af5f1b9cb7fc7645a9f27f070fbe2fd, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,10 +48,9 @@ MonoBehaviour:
   RoomSizeY: 0
   islandFrequency: 10
   EnemySpawnRate: 1
-  Player: {fileID: 0}
-  Tile: {fileID: 4861371391145181421, guid: 586e5d6fec1b740be9f6b45c08ee3c0b, type: 3}
-  Enemy: {fileID: 5866597900422723900, guid: 38eeac73e5328423183015c077b33684, type: 3}
-  LootChest: {fileID: 908390520067151063, guid: cbdd9716b51a742559a54d6cc3fdd1b8, type: 3}
   EnemyList: []
   hasLootSpawned: 0
+  unlockDoor: 0
+  openDoor: 0
   firstRoom: 0
+  roomGenerated: 0
