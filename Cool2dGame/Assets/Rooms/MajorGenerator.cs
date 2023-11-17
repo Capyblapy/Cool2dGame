@@ -36,9 +36,9 @@ public class MajorGenerator : MonoBehaviour
         summonRoom(true, new Vector3(0, 0, 0), 0, Random.Range(1, 5), Random.Range(10, 31), Random.Range(10, 31));
     }
 
-    public void generateRoom(GameObject originRoom)
+    public void generateRoom()
     {
-        RoomGenerator rg = originRoom.GetComponent<RoomGenerator>();
+        RoomGenerator rg = roomList.Last().GetComponent<RoomGenerator>();
         // Set up
         Vector3 newOffset = new Vector3(0, 0);
         int newX = Random.Range(10, 41);

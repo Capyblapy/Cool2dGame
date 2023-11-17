@@ -204,6 +204,6 @@ public class RoomGenerator : MonoBehaviour
         newLoot.transform.position = roomTiles[RoomSizeX / 2, RoomSizeY / 2].transform.position;
 
         // New Room
-        MajorGenerator.Instance.generateRoom(this.gameObject);
+        MajorGenerator.Instance.generateRoom();
     }
 }
