@@ -95,27 +95,31 @@ public class RoomGenerator : MonoBehaviour
             switch (unlockDoor)
             {
                 case 1:
-                    if(index.x == 0 && index.y == RoomSizeY/2) // left
+                    if(index.x == 0 && index.y == RoomSizeY/2) { // left
                         spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door); 
-
+                        roomTiles[1,RoomSizeY/2].GetComponent<TileScript>().setTile(tileTypes.floor);
+                    }
                     break;
                 
                 case 2:
-                    if(index.x == RoomSizeX/2 && index.y == 0) // bottom
+                    if(index.x == RoomSizeX/2 && index.y == 0) {// bottom
                         spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door); 
-
+                        roomTiles[RoomSizeX/2, 1].GetComponent<TileScript>().setTile(tileTypes.floor);
+                    }
                     break;
 
                 case 3:
-                    if(index.x == RoomSizeX-1 && index.y == RoomSizeY/2) // right
+                    if(index.x == RoomSizeX-1 && index.y == RoomSizeY/2){ // right
                         spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door);
-
+                        roomTiles[RoomSizeX-2, RoomSizeY/2].GetComponent<TileScript>().setTile(tileTypes.floor);
+                    }
                     break;
 
                 case 4:
-                    if(index.x == RoomSizeX/2 && index.y == RoomSizeY-1) // top
+                    if(index.x == RoomSizeX/2 && index.y == RoomSizeY-1) {// top
                         spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door);
-
+                        roomTiles[RoomSizeX/2,RoomSizeY-2].GetComponent<TileScript>().setTile(tileTypes.floor);
+                    }
                     break;
             }
 
