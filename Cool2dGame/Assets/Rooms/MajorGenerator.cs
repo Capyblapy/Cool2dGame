@@ -17,6 +17,8 @@ public class MajorGenerator : MonoBehaviour
     public GameObject Enemy;
     public GameObject LootChest;
 
+    public bool ItsBossTime; 
+
     public int RoomLocation = 1;
 
     void Awake()
@@ -74,11 +76,20 @@ public class MajorGenerator : MonoBehaviour
         int unlockDoor = 0;
         unlockDoor = Random.Range(1, 5);
         while (unlockDoor == openDoor)
+        {
             unlockDoor = Random.Range(1, 5);
+            if(ItsBossTime == true) {
+
+            }
+        }
+        
 
         summonRoom(false, newOffset, openDoor, unlockDoor, newX, newY);
     }
+    void bossRoom()
+    {
 
+    }
     void summonRoom(bool newBool, Vector3 offsetVector, int openDoor,int unlockDoor, int rsX, int rsY)
     {
         GameObject room = Instantiate(roomPrefab);
@@ -107,7 +118,7 @@ public class MajorGenerator : MonoBehaviour
         int roomIndex = roomList.IndexOf(room);
         GameObject pRoom = roomList[roomIndex - 1];
         GameObject fRoom;
-
+        
         if (roomIndex == roomList.Count - 1)
             fRoom = room;
         else

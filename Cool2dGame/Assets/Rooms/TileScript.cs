@@ -36,6 +36,10 @@ public class TileScript : MonoBehaviour
                 this.name = "Wall";
                 break;
             case tileTypes.hazard:
+                tileCol.enabled = false;
+                tileRend.sprite = tileSprites[2];
+
+                this.name = "Hazard";
                 break;
             case tileTypes.chest:
                 break;
