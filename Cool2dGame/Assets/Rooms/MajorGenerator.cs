@@ -17,7 +17,7 @@ public class MajorGenerator : MonoBehaviour
     public GameObject Enemy;
     public GameObject LootChest;
 
-    public bool ItsBossTime; 
+    
 
     public int RoomLocation = 1;
 
@@ -78,18 +78,20 @@ public class MajorGenerator : MonoBehaviour
         while (unlockDoor == openDoor)
         {
             unlockDoor = Random.Range(1, 5);
-            if(ItsBossTime == true) {
-
-            }
+            
         }
         
-
-        summonRoom(false, newOffset, openDoor, unlockDoor, newX, newY);
+        if(roomList.Count == 10)
+        {
+            summonRoom(false, newOffset, openDoor, 0, 40, 30);
+        }
+        else
+        {
+            summonRoom(false, newOffset, openDoor, unlockDoor, newX, newY);
+        }
+        
     }
-    void bossRoom()
-    {
-
-    }
+   
     void summonRoom(bool newBool, Vector3 offsetVector, int openDoor,int unlockDoor, int rsX, int rsY)
     {
         GameObject room = Instantiate(roomPrefab);
@@ -130,6 +132,16 @@ public class MajorGenerator : MonoBehaviour
                 roomList[i].SetActive(true);
             else
                 roomList[i].SetActive(false);
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z) && roomList.Count != 11)
+        {
+            generateRoom();
+
+            Player.transform.position = new Vector3(roomList[roomList.Count - 1].GetComponent<RoomGenerator>().RoomSizeX / 2, roomList[roomList.Count - 1].GetComponent<RoomGenerator>().RoomSizeY / 2);
         }
     }
 }

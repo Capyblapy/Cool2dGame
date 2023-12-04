@@ -207,7 +207,10 @@ public class RoomGenerator : MonoBehaviour
         float rng = Random.Range(0, 100);
         if(rng <= islandFrequency)
         {
-            spawnedTile.GetComponent<TileScript>().setTile(tileTypes.wall);
+            if (MajorGenerator.Instance.roomList.Count == 10)
+                spawnedTile.GetComponent<TileScript>().setTile(tileTypes.hazard);
+            else
+                spawnedTile.GetComponent<TileScript>().setTile(tileTypes.wall);
             
         }
     }

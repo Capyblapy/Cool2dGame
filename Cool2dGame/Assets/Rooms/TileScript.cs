@@ -36,9 +36,9 @@ public class TileScript : MonoBehaviour
                 this.name = "Wall";
                 break;
             case tileTypes.hazard:
-                tileCol.enabled = false;
+                tileCol.enabled = true;
+                tileCol.isTrigger = true;
                 tileRend.sprite = tileSprites[2];
-
                 this.name = "Hazard";
                 break;
             case tileTypes.chest:
@@ -87,6 +87,20 @@ public class TileScript : MonoBehaviour
                 // sprite change stuff here
                 tileCol.enabled = false;
                 this.name = "UnlockedDoor";
+                break;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (tileType)
+        {
+            case tileTypes.hazard:
+                PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+                if (playerHealth)
+                {
+                    playerHealth.Health -= 5;
+                }
                 break;
         }
     }
