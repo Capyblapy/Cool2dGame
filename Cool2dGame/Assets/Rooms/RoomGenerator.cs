@@ -63,7 +63,15 @@ public class RoomGenerator : MonoBehaviour
                 SpawnTile(new Vector3(x, y, 0), new Vector2(x, y));
             }
         }
+        roomTiles[1, RoomSizeY / 2].GetComponent<TileScript>().setTile(tileTypes.floor);
+               
+        roomTiles[RoomSizeX / 2, 1].GetComponent<TileScript>().setTile(tileTypes.floor);
+              
+        roomTiles[RoomSizeX - 2, RoomSizeY / 2].GetComponent<TileScript>().setTile(tileTypes.floor);
+               
+        roomTiles[RoomSizeX / 2, RoomSizeY - 2].GetComponent<TileScript>().setTile(tileTypes.floor);
 
+        
         roomTrigger = this.AddComponent<BoxCollider2D>();
         roomTrigger.isTrigger = true;
         roomTrigger.offset = new Vector2(RoomSizeX / 2, RoomSizeY / 2);
@@ -97,37 +105,37 @@ public class RoomGenerator : MonoBehaviour
                 case 1:
                     if(index.x == 0 && index.y == RoomSizeY/2) { // left
                         spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door); 
-                        //roomTiles[1,RoomSizeY/2].GetComponent<TileScript>().setTile(tileTypes.floor);
+                       // roomTiles[1,RoomSizeY/2].GetComponent<TileScript>().setTile(tileTypes.floor);
                     }
-                    if(index.x == 1 && index.y == RoomSizeY/2)
-                        spawnedTile.GetComponent<TileScript>().setTile(tileTypes.floor);
+                    //if(index.x == 1 && index.y == RoomSizeY/2)
+                    //    spawnedTile.GetComponent<TileScript>().setTile(tileTypes.floor);
                     break;
                 
                 case 2:
                     if(index.x == RoomSizeX/2 && index.y == 0) {// bottom
                         spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door); 
-                        //roomTiles[RoomSizeX/2, 1].GetComponent<TileScript>().setTile(tileTypes.floor);
+                       // roomTiles[RoomSizeX/2, 1].GetComponent<TileScript>().setTile(tileTypes.floor);
                     }
-                    if (index.x == RoomSizeY/2 && index.y == 0)
-                        spawnedTile.GetComponent<TileScript>().setTile(tileTypes.floor);
+                    //if (index.x == RoomSizeY/2 && index.y == 0)
+                    //    spawnedTile.GetComponent<TileScript>().setTile(tileTypes.floor);
                     break;
 
                 case 3:
                     if(index.x == RoomSizeX-1 && index.y == RoomSizeY/2){ // right
                         spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door);
-                       // roomTiles[RoomSizeX-2, RoomSizeY/2].GetComponent<TileScript>().setTile(tileTypes.floor);
+                        //roomTiles[RoomSizeX-2, RoomSizeY/2].GetComponent<TileScript>().setTile(tileTypes.floor);
                     }
-                    if (index.x == RoomSizeX-2 && index.y == RoomSizeY/2)
-                        spawnedTile.GetComponent<TileScript>().setTile(tileTypes.floor);
+                    //if (index.x == RoomSizeX-2 && index.y == RoomSizeY/2)
+                    //    spawnedTile.GetComponent<TileScript>().setTile(tileTypes.floor);
                     break;
 
                 case 4:
                     if(index.x == RoomSizeX/2 && index.y == RoomSizeY-1) {// top
                         spawnedTile.GetComponent<TileScript>().setTile(tileTypes.door);
-                       // roomTiles[RoomSizeX/2,RoomSizeY-2].GetComponent<TileScript>().setTile(tileTypes.floor);
+                        //roomTiles[RoomSizeX/2,RoomSizeY-2].GetComponent<TileScript>().setTile(tileTypes.floor);
                     }
-                    if (index.x == RoomSizeX/2 && index.y == RoomSizeY-2)
-                        spawnedTile.GetComponent<TileScript>().setTile(tileTypes.floor);
+                   // if (index.x == RoomSizeX/2 && index.y == RoomSizeY-2)
+                     //   spawnedTile.GetComponent<TileScript>().setTile(tileTypes.floor);
                     break;
             }
 
@@ -207,7 +215,7 @@ public class RoomGenerator : MonoBehaviour
         float rng = Random.Range(0, 100);
         if(rng <= islandFrequency)
         {
-            if (MajorGenerator.Instance.roomList.Count == 10)
+            if (MajorGenerator.Instance.isBoss == true)
                 spawnedTile.GetComponent<TileScript>().setTile(tileTypes.hazard);
             else
                 spawnedTile.GetComponent<TileScript>().setTile(tileTypes.wall);
@@ -236,6 +244,9 @@ public class RoomGenerator : MonoBehaviour
         newLoot.transform.position = roomTiles[RoomSizeX / 2, RoomSizeY / 2].transform.position;
 
         // New Room
+        if (MajorGenerator.Instance.isBoss == true)
+            return;
         MajorGenerator.Instance.generateRoom();
+        
     }
 }

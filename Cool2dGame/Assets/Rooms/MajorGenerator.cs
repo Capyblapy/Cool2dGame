@@ -17,7 +17,7 @@ public class MajorGenerator : MonoBehaviour
     public GameObject Enemy;
     public GameObject LootChest;
 
-    
+    public bool isBoss;
 
     public int RoomLocation = 1;
 
@@ -49,8 +49,13 @@ public class MajorGenerator : MonoBehaviour
         Vector3 newOffset = new Vector3(0, 0);
         int newX = Random.Range(10, 41);
         int newY = Random.Range(10, 41);
-
-
+        if (roomList.Count == 10)
+            isBoss = true;
+        if(isBoss == true)
+        {
+            newX = 40;
+            newY = 30;
+        }
         // Figures out new door & Offset for each door
         int openDoor = 0;
         switch (rg.unlockDoor)
@@ -81,9 +86,10 @@ public class MajorGenerator : MonoBehaviour
             
         }
         
-        if(roomList.Count == 10)
+        if(isBoss == true)
         {
-            summonRoom(false, newOffset, openDoor, 0, 40, 30);
+            
+            summonRoom(false, newOffset, openDoor, 0, newX, newY);
         }
         else
         {
@@ -137,11 +143,11 @@ public class MajorGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && roomList.Count != 11)
-        {
-            generateRoom();
+        //if (Input.GetKeyDown(KeyCode.Z) && roomList.Count != 11)
+      //  {
+        //    generateRoom();
 
-            Player.transform.position = new Vector3(roomList[roomList.Count - 1].GetComponent<RoomGenerator>().RoomSizeX / 2, roomList[roomList.Count - 1].GetComponent<RoomGenerator>().RoomSizeY / 2);
-        }
+      //      Player.transform.position = new Vector3(roomList[roomList.Count - 1].GetComponent<RoomGenerator>().RoomSizeX / 2, roomList[roomList.Count - 1].GetComponent<RoomGenerator>().RoomSizeY / 2);
+       // }
     }
 }
