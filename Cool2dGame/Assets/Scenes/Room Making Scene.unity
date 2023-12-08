@@ -130,38 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6008271418419745794, guid: 6c161d18f4f1e4386b054ca3ab031662, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6008271418419745794, guid: 6c161d18f4f1e4386b054ca3ab031662, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6008271418419745794, guid: 6c161d18f4f1e4386b054ca3ab031662, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6008271418419745794, guid: 6c161d18f4f1e4386b054ca3ab031662, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6008271418419745794, guid: 6c161d18f4f1e4386b054ca3ab031662, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 71.160034
-      objectReference: {fileID: 0}
-    - target: {fileID: 6008271418419745794, guid: 6c161d18f4f1e4386b054ca3ab031662, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 32.91159
-      objectReference: {fileID: 0}
-    - target: {fileID: 6008271418419745794, guid: 6c161d18f4f1e4386b054ca3ab031662, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -101.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6008271418419745794, guid: 6c161d18f4f1e4386b054ca3ab031662, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 161
-      objectReference: {fileID: 0}
     - target: {fileID: 6008271419357442459, guid: 6c161d18f4f1e4386b054ca3ab031662, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -254,30 +222,6 @@ PrefabInstance:
       propertyPath: wm
       value: 
       objectReference: {fileID: 1300711577}
-    - target: {fileID: 6008271419803888002, guid: 6c161d18f4f1e4386b054ca3ab031662, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6008271419803888002, guid: 6c161d18f4f1e4386b054ca3ab031662, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6008271419803888002, guid: 6c161d18f4f1e4386b054ca3ab031662, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6008271419803888002, guid: 6c161d18f4f1e4386b054ca3ab031662, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6008271419803888002, guid: 6c161d18f4f1e4386b054ca3ab031662, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -399.39996
-      objectReference: {fileID: 0}
-    - target: {fileID: 6008271419803888002, guid: 6c161d18f4f1e4386b054ca3ab031662, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 256
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c161d18f4f1e4386b054ca3ab031662, type: 3}
 --- !u!1 &326796417 stripped
@@ -832,4 +776,5 @@ MonoBehaviour:
   Tile: {fileID: 4861371391145181421, guid: 586e5d6fec1b740be9f6b45c08ee3c0b, type: 3}
   Enemy: {fileID: 5866597900422723900, guid: 38eeac73e5328423183015c077b33684, type: 3}
   LootChest: {fileID: 908390520067151063, guid: cbdd9716b51a742559a54d6cc3fdd1b8, type: 3}
+  isBoss: 0
   RoomLocation: 1
