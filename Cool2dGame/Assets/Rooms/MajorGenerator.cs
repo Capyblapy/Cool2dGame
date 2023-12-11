@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro.EditorUtilities;
 using UnityEditor;
 using UnityEngine;
 
@@ -25,7 +24,7 @@ public class MajorGenerator : MonoBehaviour
     {
         if (Instance == null)
         {
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             Instance = this;
         }
         else if (Instance != this)
@@ -143,11 +142,10 @@ public class MajorGenerator : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Z) && roomList.Count != 11)
-      //  {
-        //    generateRoom();
-
-      //      Player.transform.position = new Vector3(roomList[roomList.Count - 1].GetComponent<RoomGenerator>().RoomSizeX / 2, roomList[roomList.Count - 1].GetComponent<RoomGenerator>().RoomSizeY / 2);
-       // }
+        if (Input.GetKeyDown(KeyCode.Z) && roomList.Count != 11)
+        {
+            generateRoom();
+            Player.transform.position = new Vector3(roomList[roomList.Count - 1].GetComponent<RoomGenerator>().RoomSizeX / 2, roomList[roomList.Count - 1].GetComponent<RoomGenerator>().RoomSizeY / 2);
+       }
     }
 }
